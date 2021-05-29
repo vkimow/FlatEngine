@@ -1,3 +1,6 @@
 [submodule "FlatEngine/vendor/SFML"]
 	path = FlatEngine/vendor/SFML
 	url = https://github.com/SFML/SFML.git
+[submodule "FlatEngine/vendor/spdlog"]
+	path = FlatEngine/vendor/spdlog
+	url = https://github.com/gabime/spdlog.git
