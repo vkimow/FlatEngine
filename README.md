@@ -1,2 +1,2 @@
 # FlatEngine
-(SFML Core)
+SFML Engine
