@@ -13,3 +13,4 @@ define_dirs()
 define_global_properties()
 
 add_subdirectory(src/FlatEngine FlatEngine)
+add_subdirectory(src/Sandbox Sandbox)
