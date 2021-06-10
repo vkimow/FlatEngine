@@ -11,11 +11,13 @@ macro(define_build_type)
 endmacro()
 
 macro(define_dirs)
-    set(FLAT_PROJECT_DIR "${CMAKE_SOURCE_DIR}/project")
-    set(FLAT_BIN_DIR "${CMAKE_SOURCE_DIR}/bin")
+    set(FLAT_ROOT_DIR       "${CMAKE_SOURCE_DIR}")
+    set(FLAT_INCLUDE_DIR    "${FLAT_ROOT_DIR}/include")
+    set(FLAT_SOURCE_DIR     "${FLAT_ROOT_DIR}/src")
+    set(FLAT_VENDOR_DIR     "${FLAT_ROOT_DIR}/vendor")
+    set(FLAT_PROJECT_DIR    "${FLAT_ROOT_DIR}/project")
+    set(FLAT_BIN_DIR        "${FLAT_ROOT_DIR}/bin")
     set(FLAT_CONFIG_BIN_DIR "${FLAT_BIN_DIR}/${BUILD_TYPE_DIR}")
-    set(FLAT_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/include")
-    set(FLAT_SOURCE_DIR "${CMAKE_SOURCE_DIR}/src")
 endmacro()
 
 macro(define_global_properties)
@@ -47,7 +49,7 @@ function(add_flat_library)
                         ${ARGN})
              
     if (NOT "${THIS_UNPARSED_ARGUMENTS}" STREQUAL "")
-        message(FATAL_ERROR "Extra unparsed arguments when calling sfml_add_library: ${THIS_UNPARSED_ARGUMENTS}")
+        message(FATAL_ERROR "Extra unparsed arguments when calling add_flat_library: ${THIS_UNPARSED_ARGUMENTS}")
     endif()
 
 
@@ -61,7 +63,7 @@ function(add_flat_library)
 
     # properties
     set_target_properties(${THIS_LIBRARY_NAME} PROPERTIES FOLDER FlatEngine)
-    set_target_properties(${THIS_LIBRARY_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${FLAT_CONFIG_BIN_DIR}/${FLAT_ROOT_PROJECT_NAME}/${THIS_LIBRARY_NAME}")
-    set_target_properties(${THIS_LIBRARY_NAME} PROPERTIES ARCHIVE_OUTPUT_DIRECTORY "${FLAT_CONFIG_BIN_DIR}/${FLAT_ROOT_PROJECT_NAME}/${THIS_LIBRARY_NAME}")
-    set_target_properties(${THIS_LIBRARY_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${FLAT_CONFIG_BIN_DIR}/${FLAT_ROOT_PROJECT_NAME}/${THIS_LIBRARY_NAME}")
+    set_target_properties(${THIS_LIBRARY_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${FLAT_CONFIG_BIN_DIR}/${FLAT_PROJECT_NAME}/${THIS_LIBRARY_NAME}")
+    set_target_properties(${THIS_LIBRARY_NAME} PROPERTIES ARCHIVE_OUTPUT_DIRECTORY "${FLAT_CONFIG_BIN_DIR}/${FLAT_PROJECT_NAME}/${THIS_LIBRARY_NAME}")
+    set_target_properties(${THIS_LIBRARY_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${FLAT_CONFIG_BIN_DIR}/${FLAT_PROJECT_NAME}/${THIS_LIBRARY_NAME}")
 endfunction()
