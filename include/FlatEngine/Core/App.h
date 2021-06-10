@@ -1,11 +1,10 @@
 #pragma once
-#include "Core.h"
 #include <string>
 
 namespace FlatEngine::Core
 {
 
-	class FLAT_ENGINE_API App
+	class App
 	{
 	public:
 		App();
