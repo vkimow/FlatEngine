@@ -66,6 +66,7 @@ bld/
 [Pp]roject/
 bin/
 bin_int/
+src/Sandbox
 
 
 # Visual Studio 2015/2017 cache/options directory
