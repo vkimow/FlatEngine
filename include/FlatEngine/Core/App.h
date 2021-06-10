@@ -3,7 +3,6 @@
 
 namespace FlatEngine::Core
 {
-
 	class App
 	{
 	public:

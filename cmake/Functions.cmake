@@ -1,4 +1,4 @@
-function(define_build_type)
+macro(define_build_type)
     if(CMAKE_BUILD_TYPE STREQUAL "Debug")
         set(IS_DEBUG TRUE)
         set(BUILD_TYPE_DIR "debug")
@@ -8,17 +8,38 @@ function(define_build_type)
     else()
         message(FATAL_ERROR "You are using unsupported build type! ${CMAKE_BUILD_TYPE}")
     endif()
+endmacro()
 
+macro(define_dirs)
+    set(FLAT_PROJECT_DIR "${CMAKE_SOURCE_DIR}/project")
+    set(FLAT_BIN_DIR "${CMAKE_SOURCE_DIR}/bin")
+    set(FLAT_CONFIG_BIN_DIR "${FLAT_BIN_DIR}/${BUILD_TYPE_DIR}")
+    set(FLAT_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/include")
+    set(FLAT_SOURCE_DIR "${CMAKE_SOURCE_DIR}/src")
+endmacro()
 
-    set(BIN_DIR ${CMAKE_SOURCE_DIR}/bin/${BUILD_TYPE_DIR})
+macro(define_global_properties)
+    set(CMAKE_CXX_STANDARD 17)
+    set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
+
+    set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+    set_property(GLOBAL PROPERTY PREDEFINED_TARGETS_FOLDER "CMake")
+    
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${FLAT_CONFIG_BIN_DIR}/CMake")
+    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${FLAT_CONFIG_BIN_DIR}/CMake")
+    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${FLAT_CONFIG_BIN_DIR}/CMake")
+endmacro()
+
+function(set_flat_main_library)
+
 endfunction()
 
 function(add_flat_library)
     set(PREFIX THIS)
-    set(SINGLE_VALUES LIBRARY_NAME)
-    set(MULTI_VALUES SOURCES PUBLIC_HEADERS)
+    set(SINGLE_VALUES LIBRARY_NAME INCLUDE_DIR)
+    set(MULTI_VALUES SOURCES)
 
-    # parse the arguments
+    # parse
     cmake_parse_arguments(${PREFIX}
                         ""
                         "${SINGLE_VALUES}"
@@ -29,47 +50,18 @@ function(add_flat_library)
         message(FATAL_ERROR "Extra unparsed arguments when calling sfml_add_library: ${THIS_UNPARSED_ARGUMENTS}")
     endif()
 
+
+    # create
     add_library(${THIS_LIBRARY_NAME} STATIC ${THIS_SOURCES})
-    target_include_directories(${THIS_LIBRARY_NAME} PUBLIC ${THIS_PUBLIC_HEADERS})   
+    target_include_directories(${THIS_LIBRARY_NAME} PRIVATE ${THIS_INCLUDE_DIR})  
 
+    # alias
+    string(TOLOWER ${THIS_LIBRARY_NAME} THIS_LIBRARY_LOWER_NAME)
+    add_library("flat::${THIS_LIBRARY_LOWER_NAME}" ALIAS ${THIS_LIBRARY_NAME})
+
+    # properties
     set_target_properties(${THIS_LIBRARY_NAME} PROPERTIES FOLDER FlatEngine)
-    set_target_properties(${THIS_LIBRARY_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${BIN_DIR}
-										        VERSION ${PROJECT_VERSION}
-                        )
-endfunction()
-
-function(clean_temporary_cmake_files ${target})
-
-    set(cmake_generated ${CMAKE_BINARY_DIR}/CMakeCache.txt
-                        ${CMAKE_BINARY_DIR}/cmake_install.cmake
-                        ${CMAKE_BINARY_DIR}/Makefile
-                        ${CMAKE_BINARY_DIR}/CMakeFiles
-    )
-
-    foreach(file ${cmake_generated})
-
-        if (EXISTS ${file})
-            file(REMOVE_RECURSE ${file})
-        endif()
-
-    endforeach(file)   
-endfunction()
-
-function(add_flat_library_2)
-    set(prefix THIS)
-    set(SINGLE_VALUES TARGET)
-    set(MULTI_VALUES SOURCES RES)
-
-    include(CMakeParseArguments)
-    cmake_parse_arguments(${prefix}
-                     "${flags}"
-                     "${SINGLE_VALUES}"
-                     "${MULTI_VALUES}"
-                    ${ARGN})
-    message(" THIS_IS_ASCII: ${THIS_IS_ASCII}")
-    message(" THIS_IS_UNICODE: ${THIS_IS_UNICODE}")
-    message(" THIS_TARGET: ${THIS_TARGET}")
-    message(" THIS_SOURCES: ${THIS_SOURCES}")
-    message(" THIS_RES: ${THIS_RES}")
-    message(" THIS_UNPARSED_ARGUMENTS: ${THIS_UNPARSED_ARGUMENTS}")
+    set_target_properties(${THIS_LIBRARY_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${FLAT_CONFIG_BIN_DIR}/${FLAT_ROOT_PROJECT_NAME}/${THIS_LIBRARY_NAME}")
+    set_target_properties(${THIS_LIBRARY_NAME} PROPERTIES ARCHIVE_OUTPUT_DIRECTORY "${FLAT_CONFIG_BIN_DIR}/${FLAT_ROOT_PROJECT_NAME}/${THIS_LIBRARY_NAME}")
+    set_target_properties(${THIS_LIBRARY_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${FLAT_CONFIG_BIN_DIR}/${FLAT_ROOT_PROJECT_NAME}/${THIS_LIBRARY_NAME}")
 endfunction()
