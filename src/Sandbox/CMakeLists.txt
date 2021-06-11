@@ -13,11 +13,13 @@ set(${CURRENT_SOURCES}
 
 
 add_executable(${PROJECT_NAME} ${SANDBOX_SOURCES})
+include("SetupConfigurations")
+
 set_property(DIRECTORY ${CMAKE_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT Sandbox)
 set_target_properties(${PROJECT_NAME} PROPERTIES FOLDER Sandbox)
-set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${FLAT_CONFIG_BIN_DIR}/Sandbox")
-set_target_properties(${PROJECT_NAME} PROPERTIES ARCHIVE_OUTPUT_DIRECTORY "${FLAT_CONFIG_BIN_DIR}/Sandbox")
-set_target_properties(${PROJECT_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${FLAT_CONFIG_BIN_DIR}/Sandbox")
+set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${FLAT_BIN_DIR}/$<$<CONFIG:Debug>:debug>$<$<CONFIG:Release>:release>/Sandbox")
+set_target_properties(${PROJECT_NAME} PROPERTIES ARCHIVE_OUTPUT_DIRECTORY "${FLAT_BIN_DIR}/$<$<CONFIG:Debug>:debug>$<$<CONFIG:Release>:release>/Sandbox")
+set_target_properties(${PROJECT_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${FLAT_BIN_DIR}/$<$<CONFIG:Debug>:debug>$<$<CONFIG:Release>:release>/Sandbox")
 
 target_link_libraries(${PROJECT_NAME} PUBLIC flat::core)
 target_include_directories(${PROJECT_NAME} PRIVATE ${FLAT_INCLUDE_DIR})
