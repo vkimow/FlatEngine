@@ -26,7 +26,7 @@ endfunction()
 function(add_flat_library)
     set(PREFIX THIS)
     set(SINGLE_VALUES LIBRARY_NAME)
-    set(MULTI_VALUES SOURCES INCLUDE_DIRS LINK_LIBRARIES)
+    set(MULTI_VALUES SOURCES INCLUDE_DIRS LINK_LIBS)
 
     # parse
     cmake_parse_arguments(${PREFIX}
@@ -46,7 +46,7 @@ function(add_flat_library)
     target_include_directories(${THIS_LIBRARY_NAME} PRIVATE ${THIS_INCLUDE_DIRS})
     
     #link
-    target_link_libraries(${THIS_LIBRARY_NAME} ${THIS_LINK_LIBRARIES})
+    target_link_libraries(${THIS_LIBRARY_NAME} ${THIS_LINK_LIBS})
 
     # alias
     string(TOLOWER ${THIS_LIBRARY_NAME} THIS_LIBRARY_LOWER_NAME)
@@ -62,8 +62,7 @@ function(add_flat_library)
     # target_compile_definitions(${THIS_LIBRARY_NAME} $<$<CONFIG:Debug>:debug> $<$<CONFIG:Release>:release>)
 endfunction()
 
-
-macro(set_library_dirs)
+macro(set_flat_library_dirs)
     set(PREFIX THIS)
     set(SINGLE_VALUES LIBRARY_NAME)
 
@@ -89,10 +88,18 @@ macro(set_library_dirs)
     # include dir
     set(FLAT_${LIBRARY_UPPER_NAME}_INCLUDE_DIR "${FLAT_INCLUDE_DIR}/${FLAT_PROJECT_NAME}/${PROJECT_NAME}")
     set(FLAT_CURRENT_INCLUDE_DIR ${FLAT_${LIBRARY_UPPER_NAME}_INCLUDE_DIR})
+
+    # auto sources
+    file(GLOB_RECURSE FLAT_${LIBRARY_UPPER_NAME}_AUTO_SOURCES ${FLAT_CURRENT_SOURCE_DIR}/*.cpp ${FLAT_CURRENT_SOURCE_DIR}/*.h)
+    set(FLAT_CURRENT_AUTO_SOURCES ${FLAT_${LIBRARY_UPPER_NAME}_AUTO_SOURCES})
+
+    # auto public headers
+    file(GLOB_RECURSE FLAT_${LIBRARY_UPPER_NAME}_AUTO_PUBLIC_HEADERS ${FLAT_CURRENT_INCLUDE_DIR}/*.h)
+    set(FLAT_CURRENT_AUTO_PUBLIC_HEADERS ${FLAT_${LIBRARY_UPPER_NAME}_AUTO_PUBLIC_HEADERS})
 endmacro()
 
 
-macro(set_library_sources)
+macro(set_flat_library_sources)
     set(PREFIX THIS)
     set(SINGLE_VALUES LIBRARY_NAME)
     set(MULTI_VALUES SOURCES)
@@ -115,7 +122,7 @@ macro(set_library_sources)
 endmacro()
 
 
-macro(set_library_public_headers)
+macro(set_flat_library_public_headers)
     set(PREFIX THIS)
     set(SINGLE_VALUES LIBRARY_NAME)
     set(MULTI_VALUES PUBLIC_HEADERS)
