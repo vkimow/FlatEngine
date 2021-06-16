@@ -12,6 +12,7 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 include("Functions")
 include("SetupConfigurations")
 
+# defines
 define_dirs()
 define_global_properties()
 
