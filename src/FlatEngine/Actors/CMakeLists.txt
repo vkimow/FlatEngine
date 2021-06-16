@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
 
-project(Core CXX)
+project(Actors CXX)
 
 set_flat_library_dirs(LIBRARY_NAME ${PROJECT_NAME})
 
