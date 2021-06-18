@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Core.h>
+#include "FlatEngineApi.h"
 #include <memory>
 #include "Simulation\ITransformable.h"
 

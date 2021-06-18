@@ -1,9 +1,9 @@
 #pragma once
 
-#include <Core.h>
+#include "FlatEngineApi.h"
 #include <functional>
 #include <unordered_map>
-#include "Function.h"
+#include "Events/Function.h"
 
 namespace FlatEngine::Core::Tools::Events
 {

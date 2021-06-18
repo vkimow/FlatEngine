@@ -1,5 +1,5 @@
 #pragma once
-#include "VectorUtils.h"
+#include "Tools/Vector/VectorUtils.h"
 
 namespace FlatEngine::Core::Tools::Vector
 {
@@ -22,8 +22,10 @@ namespace FlatEngine::Core::Tools::Vector
         return source.x * source.x + source.y * source.y;
     }
 
+    const sf::Vector2f Zero = sf::Vector2f(0.0f, 0.0f);
+
     bool IsZero(const sf::Vector2f source)
     {
-        return source.x == 0 && source.y == 0;
+        return source == Zero;
     }
 }

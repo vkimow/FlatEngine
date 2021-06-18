@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Core.h>
+#include "FlatEngineApi.h"
 #include "Vector.h"
 
 namespace FlatEngine::Core::Modules::Input

@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Core.h>
-#include "FunctionIdGetter.h"
+#include "FlatEngineApi.h"
 #include <functional>
+#include "Events/FunctionIdGetter.h"
 
 namespace FlatEngine::Core::Tools::Events
 {

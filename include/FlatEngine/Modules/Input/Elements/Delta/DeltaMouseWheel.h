@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Core.h>
+#include "FlatEngineApi.h"
 #include "Delta.h"
 
 namespace FlatEngine::Core::Modules::Input

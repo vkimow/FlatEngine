@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Core.h>
+#include "FlatEngineApi.h"
 #include "Modules\Display\DisplayElement.h"
 #include "Modules\Display\Tools\Sprite.h"
 #include "Modules\Display\Tools\FrameSpeed.h"

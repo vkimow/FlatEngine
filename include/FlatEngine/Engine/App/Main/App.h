@@ -1,6 +1,5 @@
 #pragma once
-#include "Core.h"
-#include "SFML\Graphics.hpp"
+#include "Core/FlatEngineApi.h"
 #include <string>
 
 #pragma region Forward Declaration
@@ -24,7 +23,6 @@ namespace FlatEngine::Core::Modules
 
 namespace FlatEngine::Core
 {
-
 	class FLAT_ENGINE_API App
 	{
 	public:

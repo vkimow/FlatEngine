@@ -1,7 +1,6 @@
 #pragma once
 
-#include <Core.h>
-#include <type_traits>
+#include "FlatEngineApi.h"
 #include <functional>
 
 namespace FlatEngine::Core::Tools::Events
