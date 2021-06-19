@@ -1,12 +1,12 @@
 #pragma once
 
-#include "FlatEngineApi.h"
+#include "Main/FlatEngineApi.h"
 #include <iostream>
 #include <functional>
 #include <vector>
 #include "Events/Function.h"
 
-namespace FlatEngine::Core::Tools::Events
+namespace FlatEngine::Core
 {
 	template <typename Member, typename Type>
 	class FLAT_ENGINE_API MemberFunction : public Function<Type>

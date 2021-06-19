@@ -1,19 +1,16 @@
 #pragma once
 
-#include "FlatEngineApi.h"
-#include "Simulation\Transformable.h"
-#include "Simulation\IMovable.h"
-#include "Simulation\IRotatable.h"
+#include "Main/FlatEngineApi.h"
+#include "Transform/ITransformable.h"
 
-namespace FlatEngine::Core::Modules::Display
+namespace FlatEngine::Display
 {
-
 	class FLAT_ENGINE_API Camera
 	{
 
 	public:
 		Camera();
-		Camera(std::shared_ptr<Simulation::ITransformable> origin);
+		Camera(std::shared_ptr<Core::ITransformable> origin);
 		~Camera();
 
 	public:
@@ -21,14 +18,14 @@ namespace FlatEngine::Core::Modules::Display
 		bool IsCameraActive();
 
 	public:
-		void SetOrigin(std::shared_ptr<Simulation::ITransformable> value);
-		std::shared_ptr<Simulation::ITransformable> GetOrigin() const { return origin; };
+		void SetOrigin(std::shared_ptr<Core::ITransformable> value);
+		std::shared_ptr<Core::ITransformable> GetOrigin() const { return origin; };
 
 		void SetZoom(float value);
 		float GetZoom() const { return zoom; }
 
 	private:
-		std::shared_ptr<Simulation::ITransformable> origin;
+		std::shared_ptr<Core::ITransformable> origin;
 		float zoom;
 	};
 

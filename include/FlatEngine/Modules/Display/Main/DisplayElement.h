@@ -1,8 +1,8 @@
 #pragma once
 
-#include "FlatEngineApi.h"
+#include "Main/FlatEngineApi.h"
 #include <memory>
-#include "Simulation\ITransformable.h"
+#include "Transform\ITransformable.h"
 
 #pragma region Forward Declaration
 namespace sf
@@ -10,19 +10,19 @@ namespace sf
 	class Drawable;
 }
 
-namespace FlatEngine::Core::Modules::Display
+namespace FlatEngine::Display
 {
 	class Camera;
 }
 #pragma endregion
 
-namespace FlatEngine::Core::Modules
+namespace FlatEngine::Display
 {
 	class FLAT_ENGINE_API DisplayElement
 	{
 	public:
-		DisplayElement(std::shared_ptr<const Simulation::ITransformable> origin);
-		DisplayElement(std::shared_ptr<const Simulation::ITransformable> origin, size_t displayOrder);
+		DisplayElement(std::shared_ptr<const Core::ITransformable> origin);
+		DisplayElement(std::shared_ptr<const Core::ITransformable> origin, size_t displayOrder);
 		virtual ~DisplayElement();
 
 	public:
@@ -32,14 +32,14 @@ namespace FlatEngine::Core::Modules
 		size_t GetDisplayOrder() const { return displayOrder; }
 		void SetDisplayOrder(int value);
 
-		std::shared_ptr<const Simulation::ITransformable> GetOrigin() { return origin; }
-		void SetOrigin(std::shared_ptr<const Simulation::ITransformable> value);
+		std::shared_ptr<const Core::ITransformable> GetOrigin() { return origin; }
+		void SetOrigin(std::shared_ptr<const Core::ITransformable> value);
 
 	protected:
 		sf::Vector2f GetScreenPosition(const Display::Camera* const camera);
 
 	private:
-		std::shared_ptr<const Simulation::ITransformable> origin;
+		std::shared_ptr<const Core::ITransformable> origin;
 		size_t displayOrder;
 
 		friend std::ostream& operator<<(std::ostream& out, const DisplayElement& element);

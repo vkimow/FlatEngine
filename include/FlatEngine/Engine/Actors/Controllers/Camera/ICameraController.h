@@ -1,9 +1,9 @@
 #pragma once
 
-#include "FlatEngineApi.h"
-#include "Actors/Controllers/Transform/MoveController.h"
-#include "Actors/Controllers/Transform/RotateController.h"
-#include "ZoomController.h"
+#include "Core/Main/FlatEngineApi.h"
+#include "Controllers/Transform/IMoveController.h"
+#include "Controllers/Transform/IRotateController.h"
+#include "Controllers/Camera/IZoomController.h"
 
 namespace FlatEngine::Actors::Controllers
 {

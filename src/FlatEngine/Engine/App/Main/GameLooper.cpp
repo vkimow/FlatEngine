@@ -1,50 +1,52 @@
-#include "GameLooper.h"
-#include "ModulesHeader.h"
+#include "Main/GameLooper.h"
+#include "Core/Main/Time/TimeModule.h"
+#include "Core/Main/Update/UpdateModule.h"
+#include "Display/Main/DisplayModule.h"
+#include "Input/Main/InputModule.h"
 
-namespace FlatEngine::Core{
-
-GameLooper::GameLooper(App* app, sf::RenderWindow* renderWindow)
-	:
-	inputModule(new Modules::InputModule(app, renderWindow)),
-	timeModule(new Modules::TimeModule()),
-	logicModule(new Modules::UpdateModule()),
-	displayModule(new Modules::DisplayModule(renderWindow))
-{}
-
-GameLooper::~GameLooper()
+namespace FlatEngine
 {
-	delete displayModule;
-	delete logicModule;
-	delete timeModule;
-	delete inputModule;
-}
+	GameLooper::GameLooper(App* app, sf::RenderWindow* renderWindow)
+		:
+		inputModule(new Input::InputModule(renderWindow)),
+		timeModule(new Core::TimeModule()),
+		logicModule(new Core::UpdateModule()),
+		displayModule(new Display::DisplayModule(renderWindow))
+	{}
 
-void GameLooper::Loop()
-{
-	InputLoop();
-	TimeLoop();
-	UpdateLoop();
-	DisplayLoop();
-}
+	GameLooper::~GameLooper()
+	{
+		delete displayModule;
+		delete logicModule;
+		delete timeModule;
+		delete inputModule;
+	}
 
-void GameLooper::InputLoop()
-{
-	inputModule->Update();
-}
+	void GameLooper::Loop()
+	{
+		InputLoop();
+		TimeLoop();
+		UpdateLoop();
+		DisplayLoop();
+	}
 
-void GameLooper::TimeLoop()
-{
-	timeModule->Update();
-}
+	void GameLooper::InputLoop()
+	{
+		inputModule->Update();
+	}
 
-void GameLooper::UpdateLoop()
-{
-	logicModule->Update();
-}
+	void GameLooper::TimeLoop()
+	{
+		timeModule->Update();
+	}
 
-void GameLooper::DisplayLoop()
-{
-	displayModule->Update();
-}
+	void GameLooper::UpdateLoop()
+	{
+		logicModule->Update();
+	}
 
+	void GameLooper::DisplayLoop()
+	{
+		displayModule->Update();
+	}
 }

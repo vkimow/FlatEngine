@@ -1,27 +1,27 @@
 #pragma once
 
-#include "FlatEngineApi.h"
+#include "Main/FlatEngineApi.h"
 
-namespace FlatEngine::Core::Modules
+namespace FlatEngine::Core
 {
 	class FLAT_ENGINE_API UpdateElement
 	{
 	public:
 		UpdateElement();
-		UpdateElement(int updateOrder);
+		UpdateElement(size_t updateOrder);
 		virtual ~UpdateElement();
 
 	public:
 		virtual void Update() = 0;
 
-		int GetUpdateOrder() const { return updateOrder; }
-		void SetUpdateOrder(int value);
+		size_t GetUpdateOrder() const { return updateOrder; }
+		void SetUpdateOrder(size_t value);
 
 		bool IsActive() const { return isActive; }
 		void SetActive(bool value);
 
 	private:
 		bool isActive;
-		int updateOrder;
+		size_t updateOrder;
 	};
 }

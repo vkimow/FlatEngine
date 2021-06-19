@@ -1,9 +1,9 @@
 #pragma once
 
-#include "FlatEngineApi.h"
-#include "Delta.h"
+#include "Main/FlatEngineApi.h"
+#include "Elements/Delta/Delta.h"
 
-namespace FlatEngine::Core::Modules::Input
+namespace FlatEngine::Input
 {
 
 	class FLAT_ENGINE_API DeltaMouseWheel : public Delta

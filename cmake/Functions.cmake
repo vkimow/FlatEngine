@@ -22,7 +22,12 @@ endmacro()
 function(add_flat_library)
     set(PREFIX THIS)
     set(SINGLE_VALUES LIBRARY_NAME SOLUTION_FOLDER OUTPUT_DIR)
-    set(MULTI_VALUES SOURCES INCLUDE_DIRS PUBLIC_LINK_LIBS PRIVATE_LINK_LIBS)
+    set(MULTI_VALUES    SOURCES 
+                        PUBLIC_INCLUDE_DIRS
+                        PRIVATE_INCLUDE_DIRS
+                        PUBLIC_LINK_LIBS
+                        PRIVATE_LINK_LIBS
+                        )
 
     # parse
     cmake_parse_arguments(${PREFIX}
@@ -38,9 +43,19 @@ function(add_flat_library)
     # create
     add_library(${THIS_LIBRARY_NAME} STATIC ${THIS_SOURCES})
 
+    # alias
+    string(TOLOWER ${THIS_LIBRARY_NAME} THIS_LIBRARY_LOWER_NAME)
+    add_library("flat::${THIS_LIBRARY_LOWER_NAME}" ALIAS ${THIS_LIBRARY_NAME})
+
     #include
-    target_include_directories(${THIS_LIBRARY_NAME} PRIVATE ${THIS_INCLUDE_DIRS})
-    
+    if(NOT "${THIS_PUBLIC_INCLUDE_DIRS}" STREQUAL "")
+        target_include_directories(${THIS_LIBRARY_NAME} PUBLIC ${THIS_PUBLIC_INCLUDE_DIRS})
+    endif()
+
+    if(NOT "${THIS_PRIVATE_INCLUDE_DIRS}" STREQUAL "")
+        target_include_directories(${THIS_LIBRARY_NAME} PRIVATE ${THIS_PRIVATE_INCLUDE_DIRS})
+    endif()
+
     #link
     if(NOT "${THIS_PUBLIC_LINK_LIBS}" STREQUAL "")
         target_link_libraries(${THIS_LIBRARY_NAME} PUBLIC ${THIS_PUBLIC_LINK_LIBS})
@@ -50,10 +65,6 @@ function(add_flat_library)
         target_link_libraries(${THIS_LIBRARY_NAME} PRIVATE ${THIS_PRIVATE_LINK_LIBS})
     endif()
 
-    # alias
-    string(TOLOWER ${THIS_LIBRARY_NAME} THIS_LIBRARY_LOWER_NAME)
-    add_library("flat::${THIS_LIBRARY_LOWER_NAME}" ALIAS ${THIS_LIBRARY_NAME})
-
     # folder
     if(THIS_SOLUTION_FOLDER)
         set_target_properties(${THIS_LIBRARY_NAME} PROPERTIES FOLDER FlatEngine/${THIS_SOLUTION_FOLDER})
@@ -61,10 +72,7 @@ function(add_flat_library)
         set_target_properties(${THIS_LIBRARY_NAME} PROPERTIES FOLDER FlatEngine)
     endif()
 
-    # properties
-    message("FUCK")
-    message("${THIS_OUTPUT_DIR}")
-    message("YOU")
+    # propertiesg
     set_target_properties(${THIS_LIBRARY_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${THIS_OUTPUT_DIR})
     set_target_properties(${THIS_LIBRARY_NAME} PROPERTIES ARCHIVE_OUTPUT_DIRECTORY ${THIS_OUTPUT_DIR})
     set_target_properties(${THIS_LIBRARY_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${THIS_OUTPUT_DIR})

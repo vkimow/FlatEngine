@@ -1,14 +1,14 @@
-#include "DisplayElement.h"
-#include "DisplayModule.h" 
-#include "Camera\Camera.h"
+#include "Main/DisplayElement.h"
+#include "Main/DisplayModule.h" 
+#include "Camera/Camera.h"
 
-namespace FlatEngine::Core::Modules
+namespace FlatEngine::Display
 {
-	DisplayElement::DisplayElement(std::shared_ptr<const Simulation::ITransformable> origin)
+	DisplayElement::DisplayElement(std::shared_ptr<const Core::ITransformable> origin)
 		: DisplayElement(origin, 0)
 	{}
 
-	DisplayElement::DisplayElement(std::shared_ptr<const Simulation::ITransformable> origin, size_t displayOrder)
+	DisplayElement::DisplayElement(std::shared_ptr<const Core::ITransformable> origin, size_t displayOrder)
 		: origin(origin), displayOrder(displayOrder)
 	{
 		DisplayModule::AddElement(this);
@@ -30,7 +30,7 @@ namespace FlatEngine::Core::Modules
 		DisplayModule::SortElements();
 	}
 
-	void DisplayElement::SetOrigin(std::shared_ptr<const Simulation::ITransformable> value)
+	void DisplayElement::SetOrigin(std::shared_ptr<const Core::ITransformable> value)
 	{
 		origin = value;
 	}

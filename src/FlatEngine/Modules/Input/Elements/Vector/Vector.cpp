@@ -1,8 +1,7 @@
-#include "Vector.h"
-#include "Modules\Input\InputModule.h"
+#include "Elements/Vector/Vector.h"
 #include <iostream>
 
-namespace FlatEngine::Core::Modules::Input {
+namespace FlatEngine::Input {
 
 	Vector::Vector()
 		: Vector(0.05f)

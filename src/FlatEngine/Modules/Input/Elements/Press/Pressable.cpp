@@ -1,7 +1,8 @@
-#include "Pressable.h"
-#include "Modules\Input\InputModule.h"
+#include "Elements/Press/Pressable.h"
+#include "Main\InputModule.h"
 
-namespace FlatEngine::Core::Modules::Input {
+namespace FlatEngine::Input
+{
 
 	Pressable::Pressable()
 		:

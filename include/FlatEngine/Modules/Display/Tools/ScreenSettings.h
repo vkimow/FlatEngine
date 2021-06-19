@@ -1,9 +1,9 @@
 #pragma once
 
-#include "FlatEngineApi.h"
+#include "Main/FlatEngineApi.h"
 #include "SFML\System.hpp"
 
-namespace FlatEngine::Core::Modules::Display
+namespace FlatEngine::Display
 {
 	class FLAT_ENGINE_API ScreenSettings
 	{

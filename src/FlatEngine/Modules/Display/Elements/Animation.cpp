@@ -1,25 +1,25 @@
-#include "Animation.h"
-#include "Modules\Time\TimeModule.h"
+#include "Elements/Animation.h"
+#include "Main/Time/TimeModule.h"
 
-namespace FlatEngine::Core::Modules::Display
+namespace FlatEngine::Display
 {
-	Animation::Animation(std::shared_ptr<const Simulation::ITransformable> origin, const std::vector<Sprite>& sprites)
+	Animation::Animation(std::shared_ptr<const Core::ITransformable> origin, const std::vector<Sprite>& sprites)
 		: Animation(origin, sprites, 1)
 	{}
 
-	Animation::Animation(std::shared_ptr<const Simulation::ITransformable> origin, const std::vector<Sprite>& sprites, float spritesPerSecond)
+	Animation::Animation(std::shared_ptr<const Core::ITransformable> origin, const std::vector<Sprite>& sprites, float spritesPerSecond)
 		: Animation(origin, sprites, spritesPerSecond, 0)
 	{}
 
-	Animation::Animation(std::shared_ptr<const Simulation::ITransformable> origin, const std::vector<Sprite>& sprites, FrameSpeed animationSpeed)
+	Animation::Animation(std::shared_ptr<const Core::ITransformable> origin, const std::vector<Sprite>& sprites, FrameSpeed animationSpeed)
 		: Animation(origin, sprites, animationSpeed, 0)
 	{}
 
-	Animation::Animation(std::shared_ptr<const Simulation::ITransformable> origin, const std::vector<Sprite>& sprites, float spritesPerSecond, size_t displayOrder)
+	Animation::Animation(std::shared_ptr<const Core::ITransformable> origin, const std::vector<Sprite>& sprites, float spritesPerSecond, size_t displayOrder)
 		: Animation(origin, sprites, (FrameSpeed)spritesPerSecond, displayOrder)
 	{}
 
-	Animation::Animation(std::shared_ptr<const Simulation::ITransformable> origin, const std::vector<Sprite>& sprites, FrameSpeed animationSpeed, size_t displayOrder)
+	Animation::Animation(std::shared_ptr<const Core::ITransformable> origin, const std::vector<Sprite>& sprites, FrameSpeed animationSpeed, size_t displayOrder)
 		:
 		sprites(sprites),
 		animationSpeed(animationSpeed),
@@ -30,7 +30,7 @@ namespace FlatEngine::Core::Modules::Display
 
 	void Animation::UpdateDrawable(const Display::Camera* const camera)
 	{
-		timeToChageSprite -= Modules::TimeModule::GetDeltaTime();
+		timeToChageSprite -= Core::TimeModule::GetDeltaTime();
 
 		if(timeToChageSprite <= 0)
 		{

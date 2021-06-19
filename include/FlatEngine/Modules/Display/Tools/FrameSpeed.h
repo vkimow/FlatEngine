@@ -1,8 +1,8 @@
 #pragma once
 
-#include "FlatEngineApi.h"
+#include "Main/FlatEngineApi.h"
 
-namespace FlatEngine::Core::Modules::Display
+namespace FlatEngine::Display
 {
 	class FLAT_ENGINE_API FrameSpeed
 	{

@@ -1,6 +1,6 @@
-#include "VectorMouse.h"
+#include "Elements/Vector/VectorMouse.h"
 
-namespace FlatEngine::Core::Modules::Input{
+namespace FlatEngine::Input{
 
 VectorMouse::VectorMouse()
 {}

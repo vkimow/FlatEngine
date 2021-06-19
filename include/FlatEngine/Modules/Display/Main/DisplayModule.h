@@ -1,17 +1,17 @@
 #pragma once
 
-#include "FlatEngineApi.h"
+#include "Main/FlatEngineApi.h"
 #include "Tools/ScreenSettings.h"
 #include "SFML/Graphics.hpp"
 #include <vector>
 
-namespace FlatEngine::Core::Modules::Display
+namespace FlatEngine::Display
 {
 	class CameraManager;
 	class Camera;
 }
 
-namespace FlatEngine::Core::Modules
+namespace FlatEngine::Display
 {
 	class DisplayElement;
 

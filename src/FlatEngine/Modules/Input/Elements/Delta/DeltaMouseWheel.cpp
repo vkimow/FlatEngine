@@ -1,6 +1,6 @@
-#include "DeltaMouseWheel.h"
+#include "Elements/Delta/DeltaMouseWheel.h"
 
-namespace FlatEngine::Core::Modules::Input{
+namespace FlatEngine::Input{
 
 DeltaMouseWheel::DeltaMouseWheel(sf::Mouse::Wheel wheel)
 	: wheel(wheel)

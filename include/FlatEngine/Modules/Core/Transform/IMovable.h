@@ -1,9 +1,9 @@
 #pragma once
 
-#include "FlatEngineApi.h"
-#include "SFML\System.hpp"
+#include "Main/FlatEngineApi.h"
+#include "SFML/System.hpp"
 
-namespace FlatEngine::Core::Simulation
+namespace FlatEngine::Core
 {
 	class FLAT_ENGINE_API IMovable
 	{

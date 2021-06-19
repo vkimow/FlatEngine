@@ -1,23 +1,23 @@
 #pragma once
 
-#include "FlatEngineApi.h"
+#include "Main/FlatEngineApi.h"
 #include <functional>
 #include <unordered_map>
 #include "Events/Function.h"
 
-namespace FlatEngine::Core::Tools::Events
+namespace FlatEngine::Core
 {
 
 #pragma region Create Macros
 #define CreateAction(type, name)\
 	public:\
 \
-		void AddListener##name(FlatEngine::Core::Tools::Events::Function<type> function)\
+		void AddListener##name(FlatEngine::Core::Function<type> function)\
 		{\
 			##name += function;\
 		}\
 \
-		void RemoveListener##name(FlatEngine::Core::Tools::Events::Function<type> function)\
+		void RemoveListener##name(FlatEngine::Core::Function<type> function)\
 		{\
 			##name -= function;\
 		}\
@@ -28,7 +28,7 @@ namespace FlatEngine::Core::Tools::Events
 		}\
 \
 	private:\
-		FlatEngine::Core::Tools::Events::Action<type> ##name;
+		FlatEngine::Core::Action<type> ##name;
 #pragma endregion
 
 #pragma region TEMPLATE

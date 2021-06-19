@@ -1,12 +1,12 @@
 #pragma once
 
-#include "FlatEngineApi.h"
+#include "Main/FlatEngineApi.h"
 #include "SFML/Window.hpp"
-#include "Modules\Input\InputElement.h"
-#include "Tools\Events\Action.h"
-#include <Tools\Events\Function.h>
+#include "Main\InputElement.h"
+#include "Events\Action.h"
+#include "Events\Function.h"
 
-namespace FlatEngine::Core::Modules::Input
+namespace FlatEngine::Input
 {
 
 	class FLAT_ENGINE_API Pressable : public InputElement
@@ -30,7 +30,7 @@ namespace FlatEngine::Core::Modules::Input
 
 	private:
 		CreateAction(void, OnPress)
-			CreateAction(void, OnRelease)
+		CreateAction(void, OnRelease)
 
 	private:
 		bool isPressed;

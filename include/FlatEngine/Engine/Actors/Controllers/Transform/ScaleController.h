@@ -1,22 +1,23 @@
 #pragma once
 
-#include "FlatEngineApi.h"
-#include "Modules\Display\Camera\Camera.h"
-#include "Modules\Update\UpdateElement.h"
-#include "Modules\Input\InputHeader.h"
-#include "IScaleController.h"
+#include "Core/Main/FlatEngineApi.h"
+#include "Display\Camera\Camera.h"
+#include "Core/Main\Update\UpdateElement.h"
+#include "Input\Elements\Vector\Vector.h"
+#include "Controllers/Transform/IScaleController.h"
+#include "Core/Transform/IScalable.h"
 
 
 namespace FlatEngine::Actors::Controllers
 {
-	class FLAT_ENGINE_API ScaleController final : public IScaleController, public Core::Modules::UpdateElement
+	class FLAT_ENGINE_API ScaleController final : public IScaleController, public Core::UpdateElement
 	{
 	public:
-		ScaleController(std::shared_ptr < Core::Simulation::IScalable> scalable,
-					   std::shared_ptr<Core::Modules::Input::Vector> input);
+		ScaleController(std::shared_ptr<Core::IScalable> scalable,
+					   std::shared_ptr<Input::Vector> input);
 
-		ScaleController(std::shared_ptr < Core::Simulation::IScalable> scalable,
-					   std::shared_ptr<Core::Modules::Input::Vector> input,
+		ScaleController(std::shared_ptr < Core::IScalable> scalable,
+					   std::shared_ptr<Input::Vector> input,
 					   float speed);
 
 		~ScaleController();
@@ -31,8 +32,8 @@ namespace FlatEngine::Actors::Controllers
 		virtual void Scale(const sf::Vector2f& delta) override;
 
 	private:
-		std::shared_ptr<Core::Simulation::IScalable> scalable;
-		std::shared_ptr<Core::Modules::Input::Vector> input;
+		std::shared_ptr<Core::IScalable> scalable;
+		std::shared_ptr<Input::Vector> input;
 		float speed;
 	};
 }

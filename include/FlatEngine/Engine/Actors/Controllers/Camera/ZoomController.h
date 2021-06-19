@@ -1,18 +1,18 @@
 #pragma once
 
-#include "FlatEngineApi.h"
-#include "Modules\Input\InputHeader.h"
-#include "Modules\Display\Camera\Camera.h"
-#include "Modules\Update\UpdateElement.h"
+#include "Core/Main/FlatEngineApi.h"
+#include "Input\Elements/Delta\Delta.h"
+#include "Display\Camera\Camera.h"
+#include "Core/Main/Update\UpdateElement.h"
 #include "IZoomController.h"
 
 namespace FlatEngine::Actors::Controllers
 {
-	class FLAT_ENGINE_API ZoomController final : public IZoomController, public Core::Modules::UpdateElement
+	class FLAT_ENGINE_API ZoomController final : public IZoomController, public Core::UpdateElement
 	{
 	public:
-		ZoomController(Core::Modules::Display::Camera* camera,
-					   std::shared_ptr<Core::Modules::Input::Delta> input);
+		ZoomController(Display::Camera* camera,
+					   std::shared_ptr<Input::Delta> input);
 
 		~ZoomController();
 
@@ -26,8 +26,8 @@ namespace FlatEngine::Actors::Controllers
 		void Zoom(float delta);
 
 	private:
-		Core::Modules::Display::Camera* camera;
-		std::shared_ptr<Core::Modules::Input::Delta> input;
+		Display::Camera* camera;
+		std::shared_ptr<Input::Delta> input;
 
 		float speed;
 	};

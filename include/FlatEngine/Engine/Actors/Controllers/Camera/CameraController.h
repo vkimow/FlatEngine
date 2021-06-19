@@ -1,24 +1,25 @@
 #pragma once
 
-#include "FlatEngineApi.h"
-#include "Modules\Display\Camera\Camera.h"
-#include "Modules\Update\UpdateElement.h"
-#include "Modules\Input\InputHeader.h"
+#include "Core/Main/FlatEngineApi.h"
+#include "Display\Camera\Camera.h"
+#include "Core/Main/Update/UpdateElement.h"
+#include "Input\Elements/Delta\Delta.h"
+#include "Input/Elements/Vector/Vector.h"
 #include "Controllers/Transform/MoveController.h"
 #include "Controllers/Transform/RotateController.h"
-#include "ICameraController.h"
-#include "ZoomController.h"
+#include "Controllers/Camera/ICameraController.h"
+#include "Controllers/Camera/ZoomController.h"
 
 
 namespace FlatEngine::Actors::Controllers
 {
-	class FLAT_ENGINE_API CameraController : public ICameraController, public Core::Modules::UpdateElement
+	class FLAT_ENGINE_API CameraController : public ICameraController, public Core::UpdateElement
 	{
 	public:
-		CameraController(Core::Modules::Display::Camera* camera,
-						 std::shared_ptr<Core::Modules::Input::Vector> moveInput,
-						 std::shared_ptr<Core::Modules::Input::Delta> rotateInput,
-						 std::shared_ptr<Core::Modules::Input::Delta> zoomInput);
+		CameraController(Display::Camera* camera,
+						 std::shared_ptr<Input::Vector> moveInput,
+						 std::shared_ptr<Input::Delta> rotateInput,
+						 std::shared_ptr<Input::Delta> zoomInput);
 
 
 
@@ -33,7 +34,7 @@ namespace FlatEngine::Actors::Controllers
 		virtual IZoomController& GetZoomController() override;
 
 	private:
-		Core::Modules::Display::Camera* camera;
+		Display::Camera* camera;
 
 		MoveController move;
 		RotateController rotate;

@@ -1,17 +1,17 @@
-#include "ScaleController.h"
-#include "Tools/ToolsHeader.h"
-#include "Modules/Time/TimeHeader.h"
+#include "Controllers/Transform/ScaleController.h"
+#include "Core/Main/Time/TimeModule.h"
+#include "Core/Tools/VectorTools.h"
 
 namespace FlatEngine::Actors::Controllers
 {
 
-	ScaleController::ScaleController(std::shared_ptr < Core::Simulation::IScalable> scalable,
-								   std::shared_ptr<Core::Modules::Input::Vector> input)
+	ScaleController::ScaleController(std::shared_ptr<Core::IScalable> scalable,
+								   std::shared_ptr<Input::Vector> input)
 		: ScaleController(scalable, input, 1)
 	{}
 
-	ScaleController::ScaleController(std::shared_ptr<Core::Simulation::IScalable> scalable,
-								   std::shared_ptr<Core::Modules::Input::Vector> input,
+	ScaleController::ScaleController(std::shared_ptr<Core::IScalable> scalable,
+								   std::shared_ptr<Input::Vector> input,
 								   float speed)
 		: scalable(scalable),
 		input(input),
@@ -25,9 +25,9 @@ namespace FlatEngine::Actors::Controllers
 	{
 		sf::Vector2f scaleDelta = input->GetVector();
 		scaleDelta = Core::Tools::Vector::Normalize(scaleDelta);
-		scaleDelta *= speed * Core::Modules::TimeModule::GetDeltaTime();
+		scaleDelta *= speed * Core::TimeModule::GetDeltaTime();
 
-		if (Core::Tools::Vector::IsZero(scaleDelta))
+		if (!Core::Tools::Vector::IsZero(scaleDelta))
 		{
 			Scale(scaleDelta);
 		}

@@ -1,7 +1,7 @@
-#include "InputElement.h"
-#include "InputModule.h"
+#include "Main/InputElement.h"
+#include "Main/InputModule.h"
 
-namespace FlatEngine::Core::Modules
+namespace FlatEngine::Input
 {
 	InputElement::InputElement()
 		:

@@ -1,19 +1,27 @@
 #pragma once
 
-#include "FlatEngineApi.h"
+#include "Main/FlatEngineApi.h"
 
 #pragma region Forward Declaration
-namespace FlatEngine::Core
+namespace FlatEngine
 {
 	class App;
 }
 
-namespace FlatEngine::Core::Modules
+namespace FlatEngine::Core
 {
-	class InputModule;
 	class TimeModule;
 	class UpdateModule;
+}
+
+namespace FlatEngine::Display
+{
 	class DisplayModule;
+}
+
+namespace FlatEngine::Input
+{
+	class InputModule;
 }
 
 namespace sf
@@ -22,7 +30,7 @@ namespace sf
 }
 #pragma endregion
 
-namespace FlatEngine::Core
+namespace FlatEngine
 {
 	class FLAT_ENGINE_API GameLooper
 	{
@@ -43,9 +51,9 @@ namespace FlatEngine::Core
 		void DisplayLoop();
 
 	private:
-		Modules::InputModule* inputModule;
-		Modules::TimeModule* timeModule;
-		Modules::UpdateModule* logicModule;
-		Modules::DisplayModule* displayModule;
+		Input::InputModule* inputModule;
+		Core::TimeModule* timeModule;
+		Core::UpdateModule* logicModule;
+		Display::DisplayModule* displayModule;
 	};
 }

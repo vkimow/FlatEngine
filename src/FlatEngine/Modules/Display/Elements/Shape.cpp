@@ -1,16 +1,16 @@
-#include "Shape.h"
+#include "Elements/Shape.h"
 
-namespace FlatEngine::Core::Modules::Display{
+namespace FlatEngine::Display{
 
-Shape::Shape(std::shared_ptr<const Simulation::ITransformable> origin)
+Shape::Shape(std::shared_ptr<const Core::ITransformable> origin)
 	: Shape(origin, std::shared_ptr<sf::Shape>())
 {}
 
-Shape::Shape(std::shared_ptr<const Simulation::ITransformable> origin, std::shared_ptr<sf::Shape> shape)
+Shape::Shape(std::shared_ptr<const Core::ITransformable> origin, std::shared_ptr<sf::Shape> shape)
 	: Shape(origin, shape, 0)
 {}
 
-Shape::Shape(std::shared_ptr<const Simulation::ITransformable> origin, std::shared_ptr<sf::Shape> shape, size_t displayOrder)
+Shape::Shape(std::shared_ptr<const Core::ITransformable> origin, std::shared_ptr<sf::Shape> shape, size_t displayOrder)
 	: 
 	shape(shape),
 	DisplayElement(origin, displayOrder)

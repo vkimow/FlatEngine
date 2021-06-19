@@ -1,12 +1,12 @@
 #pragma once
 
-#include "FlatEngineApi.h"
-#include "VectorDelta.h"
+#include "Main/FlatEngineApi.h"
+#include "Elements/Vector/VectorDelta.h"
 
-namespace FlatEngine::Core::Modules::Input
+
+namespace FlatEngine::Input
 {
 	class Pressable;
-	class Delta;
 
 	class FLAT_ENGINE_API VectorPressable : public VectorDelta
 	{

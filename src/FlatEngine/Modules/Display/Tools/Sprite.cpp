@@ -1,6 +1,6 @@
-#include "Sprite.h"
+#include "Tools/Sprite.h"
 
-namespace FlatEngine::Core::Modules::Display{
+namespace FlatEngine::Display{
 
 Sprite::Sprite()
 	: Sprite(std::shared_ptr<sf::Texture>())

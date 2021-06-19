@@ -1,10 +1,10 @@
 #pragma once
 
-#include "FlatEngineApi.h"
-#include "SFML\System.hpp"
-#include "ITransformable.h"
+#include "Main/FlatEngineApi.h"
+#include "Transform/ITransformable.h"
+#include "SFML/System.hpp"
 
-namespace FlatEngine::Core::Simulation
+namespace FlatEngine::Core
 {
 	class FLAT_ENGINE_API Transformable : public ITransformable
 	{
