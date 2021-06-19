@@ -1,7 +1,7 @@
-#include "ScreenSettings.h"
+#include "Tools/ScreenSettings.h"
 
 
-namespace FlatEngine::Core::Modules::Display
+namespace FlatEngine::Display
 {
 	ScreenSettings::ScreenSettings(unsigned int W, unsigned int H)
 	{

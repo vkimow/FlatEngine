@@ -1,12 +1,13 @@
-#include "Update/UpdateElement.h"
-#include "Update/UpdateModule.h"
+#include "Main/Update/UpdateElement.h"
+#include "Main/Update/UpdateModule.h"
 
-namespace FlatEngine::Core::Modules {
+namespace FlatEngine::Core
+{
 	UpdateElement::UpdateElement()
 		: UpdateElement(0)
 	{};
 
-	UpdateElement::UpdateElement(int updateOrder)
+	UpdateElement::UpdateElement(size_t updateOrder)
 		: updateOrder(updateOrder), isActive(true)
 	{
 		UpdateModule::AddElement(this);
@@ -17,7 +18,7 @@ namespace FlatEngine::Core::Modules {
 		UpdateModule::RemoveElement(this);
 	};
 
-	void UpdateElement::SetUpdateOrder(int value)
+	void UpdateElement::SetUpdateOrder(size_t value)
 	{
 		updateOrder = value;
 		UpdateModule::SortElements();

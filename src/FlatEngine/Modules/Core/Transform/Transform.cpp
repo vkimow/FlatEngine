@@ -1,7 +1,7 @@
-#include "Transform/Transformable.h"
+#include "Transform/Transform.h"
 #include <iostream>
 
-namespace FlatEngine::Core::Simulation
+namespace FlatEngine::Core
 {
 	Transformable::Transformable()
 		: Transformable(sf::Vector2f())

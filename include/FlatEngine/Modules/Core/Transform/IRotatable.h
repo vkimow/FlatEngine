@@ -1,8 +1,8 @@
 #pragma once
 
-#include "FlatEngineApi.h"
+#include "Main/FlatEngineApi.h"
 
-namespace FlatEngine::Core::Simulation
+namespace FlatEngine::Core
 {
 	class FLAT_ENGINE_API IRotatable
 	{

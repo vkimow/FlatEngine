@@ -1,12 +1,12 @@
 #pragma once
 
-#include "FlatEngineApi.h"
+#include "Main/FlatEngineApi.h"
 #include <iostream>
 #include <unordered_map>
 #include <functional>
 #include "Events/Function.h"
 
-namespace FlatEngine::Core::Tools::Events
+namespace FlatEngine::Core
 {
 	template <typename Type>
 	class FLAT_ENGINE_API GlobalFunction : public Function<Type>

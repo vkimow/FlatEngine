@@ -1,17 +1,17 @@
-#include "MoveController.h"
-#include "Tools/ToolsHeader.h"
-#include "Modules/Time/TimeHeader.h"
+#include "Controllers/Transform/MoveController.h"
+#include "Core/Main/Time/TimeModule.h"
+#include "Core/Tools/VectorTools.h"
 
 namespace FlatEngine::Actors::Controllers
 {
 
-	MoveController::MoveController(std::shared_ptr < Core::Simulation::IMovable> movable,
-								   std::shared_ptr<Core::Modules::Input::Vector> input)
+	MoveController::MoveController(std::shared_ptr<Core::IMovable> movable,
+								   std::shared_ptr<Input::Vector> input)
 		: MoveController(movable, input, 1)
 	{}
 
-	MoveController::MoveController(std::shared_ptr<Core::Simulation::IMovable> movable,
-								   std::shared_ptr<Core::Modules::Input::Vector> input,
+	MoveController::MoveController(std::shared_ptr<Core::IMovable> movable,
+								   std::shared_ptr<Input::Vector> input,
 								   float speed)
 		: movable(movable),
 		input(input),
@@ -25,9 +25,9 @@ namespace FlatEngine::Actors::Controllers
 	{
 		sf::Vector2f moveDelta = input->GetVector();
 		moveDelta = Core::Tools::Vector::Normalize(moveDelta);
-		moveDelta *= speed * Core::Modules::TimeModule::GetDeltaTime();
+		moveDelta *= speed * Core::TimeModule::GetDeltaTime();
 
-		if (Core::Tools::Vector::IsZero(moveDelta))
+		if (!Core::Tools::Vector::IsZero(moveDelta))
 		{
 			Move(moveDelta);
 		}

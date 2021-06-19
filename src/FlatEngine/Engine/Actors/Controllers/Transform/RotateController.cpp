@@ -1,17 +1,16 @@
-#include "RotateController.h"
-#include "Tools/ToolsHeader.h"
-#include "Modules/Time/TimeHeader.h"
+#include "Controllers/Transform/RotateController.h"
+#include "Core/Main/Time/TimeModule.h"
 
 namespace FlatEngine::Actors::Controllers
 {
 
-	RotateController::RotateController(std::shared_ptr < Core::Simulation::IRotatable> rotatable,
-									   std::shared_ptr<Core::Modules::Input::Delta> input)
+	RotateController::RotateController(std::shared_ptr<Core::IRotatable> rotatable,
+									   std::shared_ptr<Input::Delta> input)
 		: RotateController(rotatable, input, 1)
 	{}
 
-	RotateController::RotateController(std::shared_ptr<Core::Simulation::IRotatable> rotatable,
-									   std::shared_ptr<Core::Modules::Input::Delta> input,
+	RotateController::RotateController(std::shared_ptr<Core::IRotatable> rotatable,
+									   std::shared_ptr<Input::Delta> input,
 									   float speed)
 		: rotatable(rotatable),
 		input(input),
@@ -24,7 +23,7 @@ namespace FlatEngine::Actors::Controllers
 	void RotateController::Update()
 	{
 		float rotateDelta = input->GetDelta();
-		rotateDelta *= speed * Core::Modules::TimeModule::GetDeltaTime();
+		rotateDelta *= speed * Core::TimeModule::GetDeltaTime();
 
 		if (rotateDelta != 0)
 		{

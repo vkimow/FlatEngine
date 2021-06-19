@@ -1,14 +1,9 @@
 #pragma once
 
-#include "FlatEngineApi.h"
-#include "SFML\Window.hpp"
+#include "Main/FlatEngineApi.h"
+#include "SFML/Window.hpp"
 
 #pragma region Forward Declaration
-
-namespace FlatEngine::Core
-{
-	class App;
-}
 
 namespace FlatEngine::Core::Modules
 {
@@ -17,7 +12,7 @@ namespace FlatEngine::Core::Modules
 
 #pragma endregion
 
-namespace FlatEngine::Core::Modules
+namespace FlatEngine::Input
 {
 	class FLAT_ENGINE_API InputModule final
 	{
@@ -25,16 +20,17 @@ namespace FlatEngine::Core::Modules
 		friend class InputElement;
 
 	private:
-		InputModule(App* app, sf::Window* sfmlWindow);
+		InputModule(sf::Window* sfmlWindow);
 		InputModule() = delete;
 		InputModule(const InputModule& inputModule) = delete;
 		InputModule(InputModule&& inputModule) = delete;
+		InputModule& operator=(const InputModule& rhs) = delete;
+		InputModule& operator=(InputModule&& rhs) = delete;
 
 	public:
 		void Update();
 
 	private:
-		App* app;
 		sf::Event mainEvent;
 		sf::Window* sfmlWindow;
 

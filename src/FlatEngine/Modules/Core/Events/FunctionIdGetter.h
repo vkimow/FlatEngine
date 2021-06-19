@@ -1,9 +1,9 @@
 #pragma once
 
-#include "FlatEngineApi.h"
+#include "Main/FlatEngineApi.h"
 #include <functional>
 
-namespace FlatEngine::Core::Tools::Events
+namespace FlatEngine::Core
 {
 	template<typename Type>
 	class FLAT_ENGINE_API FunctionIdGetter

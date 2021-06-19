@@ -1,7 +1,6 @@
-#include "PressableMouse.h"
-#include "SFML\System.hpp"
+#include "Elements/Press/PressableMouse.h"
 
-namespace FlatEngine::Core::Modules::Input{
+namespace FlatEngine::Input{
 
 PressableMouse::PressableMouse(sf::Mouse::Button button)
 	:

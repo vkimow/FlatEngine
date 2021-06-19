@@ -1,8 +1,7 @@
-#include "VectorPressable.h"
+#include "Elements/Vector/VectorPressable.h"
+#include "Elements\Delta\DeltaPressable.h"
 
-#include "Modules\Input\InputElements\Delta\DeltaPressable.h"
-
-namespace FlatEngine::Core::Modules::Input {
+namespace FlatEngine::Input {
 	VectorPressable::VectorPressable(const std::shared_ptr<Pressable>& up,
 									 const std::shared_ptr<Pressable>& down,
 									 const std::shared_ptr<Pressable>& left,

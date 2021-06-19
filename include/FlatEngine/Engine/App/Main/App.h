@@ -1,27 +1,17 @@
 #pragma once
-#include "Core/FlatEngineApi.h"
+#include "Main/FlatEngineApi.h"
 #include <string>
 
 #pragma region Forward Declaration
 
-namespace FlatEngine::Core
+namespace FlatEngine
 {
 	class GameLooper;
 }
 
-namespace FlatEngine::Core::Modules
-{
-	class ModuleManager;
-}
-
-//namespace sf{
-//class Window;
-//class Vector2f;
-//}		
-
 #pragma endregion
 
-namespace FlatEngine::Core
+namespace FlatEngine
 {
 	class FLAT_ENGINE_API App
 	{

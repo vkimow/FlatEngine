@@ -1,7 +1,7 @@
-#include "FrameSpeed.h"
+#include "Tools/FrameSpeed.h"
 #include <stdexcept>
 
-namespace FlatEngine::Core::Modules::Display
+namespace FlatEngine::Display
 {
 	FrameSpeed::FrameSpeed() noexcept
 		: FrameSpeed((size_t)1)

@@ -1,7 +1,6 @@
-#include "PressableKey.h"
-#include "SFML\System.hpp"
+#include "Elements/Press/PressableKey.h"
 
-namespace FlatEngine::Core::Modules::Input
+namespace FlatEngine::Input
 {
 	PressableKey::PressableKey(sf::Keyboard::Key key)
 		:

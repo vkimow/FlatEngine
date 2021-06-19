@@ -1,40 +1,39 @@
-#include "Delta.h"
-#include "Modules\Input\InputModule.h"
+#include "Elements/Delta/Delta.h"
+#include "Main\InputModule.h"
 
-namespace FlatEngine::Core::Modules::Input{
-
-Delta::Delta()
-	: Delta(0.05f)
-{}
-
-Delta::Delta(float threshold)
-	:
-	delta(0),
-	threshold(threshold)
-{}
-
-Delta::~Delta()
-{}
-
-void Delta::UpdateInput(const sf::Event& event)
+namespace FlatEngine::Input
 {
-	float deltaNow = GetDeltaInput(event);
+	Delta::Delta()
+		: Delta(0.05f)
+	{}
 
-	if (abs(deltaNow) < threshold)
+	Delta::Delta(float threshold)
+		:
+		delta(0),
+		threshold(threshold)
+	{}
+
+	Delta::~Delta()
+	{}
+
+	void Delta::UpdateInput(const sf::Event& event)
 	{
-		deltaNow = 0;
+		float deltaNow = GetDeltaInput(event);
+
+		if (abs(deltaNow) < threshold)
+		{
+			deltaNow = 0;
+		}
+
+		if (deltaNow != delta)
+		{
+			ChangeDelta(deltaNow);
+		}
 	}
 
-	if(deltaNow != delta)
+	void Delta::ChangeDelta(float value)
 	{
-		ChangeDelta(deltaNow);
+		delta = value;
+		OnDeltaChange(value);
 	}
-}
-
-void Delta::ChangeDelta(float value)
-{
-	delta = value;
-	OnDeltaChange(value);
-}
-
 }

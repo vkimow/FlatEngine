@@ -1,8 +1,8 @@
-#include "VectorDelta.h"
-#include "Modules\Input\InputElements\Delta\Delta.h"
+#include "Elements\Vector/VectorDelta.h"
+#include "Elements\Delta\Delta.h"
 #include <iostream>
 
-namespace FlatEngine::Core::Modules::Input
+namespace FlatEngine::Input
 {
 	VectorDelta::VectorDelta(const std::shared_ptr<Delta>&x, const std::shared_ptr<Delta>&y)
 		: x(x), y(y)

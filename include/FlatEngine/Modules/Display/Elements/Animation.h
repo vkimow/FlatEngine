@@ -1,22 +1,22 @@
 #pragma once
 
-#include "FlatEngineApi.h"
-#include "Modules\Display\DisplayElement.h"
-#include "Modules\Display\Tools\Sprite.h"
-#include "Modules\Display\Tools\FrameSpeed.h"
+#include "Main/FlatEngineApi.h"
+#include "Main/DisplayElement.h"
+#include "Tools\Sprite.h"
+#include "Tools\FrameSpeed.h"
 #include <vector>
 
-namespace FlatEngine::Core::Modules::Display
+namespace FlatEngine::Display
 {
 	class FLAT_ENGINE_API Animation : DisplayElement
 	{
 	public:
 		Animation() = delete;
-		Animation(std::shared_ptr<const Simulation::ITransformable> origin, const std::vector<Sprite>& sprites);
-		Animation(std::shared_ptr<const Simulation::ITransformable> origin, const std::vector<Sprite>& sprites, float spritesPerSecond);
-		Animation(std::shared_ptr<const Simulation::ITransformable> origin, const std::vector<Sprite>& sprites, FrameSpeed animationSpeed);
-		Animation(std::shared_ptr<const Simulation::ITransformable> origin, const std::vector<Sprite>& sprites, float spritesPerSecond, size_t diplayOrder);
-		Animation(std::shared_ptr<const Simulation::ITransformable> origin, const std::vector<Sprite>& sprites, FrameSpeed animationSpeed, size_t displayOrder);
+		Animation(std::shared_ptr<const Core::ITransformable> origin, const std::vector<Sprite>& sprites);
+		Animation(std::shared_ptr<const Core::ITransformable> origin, const std::vector<Sprite>& sprites, float spritesPerSecond);
+		Animation(std::shared_ptr<const Core::ITransformable> origin, const std::vector<Sprite>& sprites, FrameSpeed animationSpeed);
+		Animation(std::shared_ptr<const Core::ITransformable> origin, const std::vector<Sprite>& sprites, float spritesPerSecond, size_t diplayOrder);
+		Animation(std::shared_ptr<const Core::ITransformable> origin, const std::vector<Sprite>& sprites, FrameSpeed animationSpeed, size_t displayOrder);
 
 
 	public:

@@ -1,16 +1,14 @@
-#include "InputModule.h"
-#include "InputElement.h"
-#include "App.h"
+#include "Main/InputModule.h"
+#include "Main/InputElement.h"
 #include <vector>
 
 
-namespace FlatEngine::Core::Modules
+namespace FlatEngine::Input
 {
 	std::vector<InputElement*> InputModule::elements = {};
 
-	InputModule::InputModule(App* app, sf::Window* sfmlWindow)
+	InputModule::InputModule(sf::Window* sfmlWindow)
 		:
-		app(app),
 		sfmlWindow(sfmlWindow),
 		mainEvent()
 	{};
@@ -21,7 +19,6 @@ namespace FlatEngine::Core::Modules
 		{
 			if(mainEvent.type == sf::Event::Closed)
 			{
-				app->Quit();
 				return;
 			}
 		}

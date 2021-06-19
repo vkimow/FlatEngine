@@ -1,9 +1,6 @@
 #pragma once
 
-#include "FlatEngineApi.h"
-#include "Modules\Input\InputHeader.h"
-#include "Modules\Display\Camera\Camera.h"
-#include "Modules\Update\UpdateElement.h"
+#include "Core/Main/FlatEngineApi.h"
 
 namespace FlatEngine::Actors::Controllers
 {

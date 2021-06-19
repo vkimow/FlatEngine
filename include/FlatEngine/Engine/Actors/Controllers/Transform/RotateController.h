@@ -1,22 +1,23 @@
 #pragma once
 
-#include "FlatEngineApi.h"
-#include "Modules\Display\Camera\Camera.h"
-#include "Modules\Update\UpdateElement.h"
-#include "Modules\Input\InputHeader.h"
-#include "IRotateController.h"
+#include "Core/Main/FlatEngineApi.h"
+#include "Display/Camera/Camera.h"
+#include "Core\Main\Update\UpdateElement.h"
+#include "Input/Elements/Delta/Delta.h"
+#include "Controllers/Transform/IRotateController.h"
+#include "Core/Transform/IRotatable.h"
 
 
 namespace FlatEngine::Actors::Controllers
 {
-	class FLAT_ENGINE_API RotateController final : public IRotateController, public Core::Modules::UpdateElement
+	class FLAT_ENGINE_API RotateController final : public IRotateController, public Core::UpdateElement
 	{
 	public:
-		RotateController(std::shared_ptr < Core::Simulation::IRotatable> rotatable,
-						 std::shared_ptr<Core::Modules::Input::Delta> input);
+		RotateController(std::shared_ptr<Core::IRotatable> rotatable,
+						 std::shared_ptr<Input::Delta> input);
 
-		RotateController(std::shared_ptr < Core::Simulation::IRotatable> rotatable,
-						 std::shared_ptr<Core::Modules::Input::Delta> input,
+		RotateController(std::shared_ptr<Core::IRotatable> rotatable,
+						 std::shared_ptr<Input::Delta> input,
 						 float speed);
 
 		~RotateController();
@@ -31,8 +32,8 @@ namespace FlatEngine::Actors::Controllers
 		virtual void Rotate(float delta) override;
 
 	private:
-		std::shared_ptr<Core::Simulation::IRotatable> rotatable;
-		std::shared_ptr<Core::Modules::Input::Delta> input;
+		std::shared_ptr<Core::IRotatable> rotatable;
+		std::shared_ptr<Input::Delta> input;
 		float speed;
 	};
 }

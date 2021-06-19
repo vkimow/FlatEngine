@@ -1,10 +1,10 @@
-#include "DisplayModule.h"
-#include "DisplayElement.h"
+#include "Main\DisplayModule.h"
+#include "Main\DisplayElement.h"
 #include "Camera\CameraManager.h"
 #include "Camera\Camera.h"
 #include <iostream>
 
-namespace FlatEngine::Core::Modules
+namespace FlatEngine::Display
 {
 	std::vector<DisplayElement*> DisplayModule::elements = {};
 	Display::ScreenSettings* DisplayModule::screenSettings = nullptr;

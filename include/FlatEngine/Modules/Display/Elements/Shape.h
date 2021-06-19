@@ -1,19 +1,19 @@
 #pragma once
 
-#include "FlatEngineApi.h"
-#include "Modules\Display\DisplayElement.h"
+#include "Main/FlatEngineApi.h"
+#include "Main\DisplayElement.h"
 #include "SFML\Graphics.hpp"
 #include <memory>
 
-namespace FlatEngine::Core::Modules::Display
+namespace FlatEngine::Display
 {
 	class FLAT_ENGINE_API Shape : public DisplayElement
 	{
 	public:
 		Shape() = delete;
-		Shape(std::shared_ptr<const Simulation::ITransformable> origin);
-		Shape(std::shared_ptr<const Simulation::ITransformable> origin, std::shared_ptr<sf::Shape> shape);
-		Shape(std::shared_ptr<const Simulation::ITransformable> origin, std::shared_ptr<sf::Shape> shape, size_t displayOrder);
+		Shape(std::shared_ptr<const Core::ITransformable> origin);
+		Shape(std::shared_ptr<const Core::ITransformable> origin, std::shared_ptr<sf::Shape> shape);
+		Shape(std::shared_ptr<const Core::ITransformable> origin, std::shared_ptr<sf::Shape> shape, size_t displayOrder);
 
 	public:
 		virtual void UpdateDrawable(const Display::Camera* const camera) override final;

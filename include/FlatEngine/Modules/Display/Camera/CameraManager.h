@@ -1,9 +1,9 @@
 #pragma once
 
-#include "FlatEngineApi.h"
+#include "Main/FlatEngineApi.h"
 #include <list>
 
-namespace FlatEngine::Core::Modules::Display
+namespace FlatEngine::Display
 {
 	class Camera;
 

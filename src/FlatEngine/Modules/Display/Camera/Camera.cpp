@@ -1,41 +1,40 @@
-#include "Camera.h"
-#include "CameraManager.h"
-#include "Modules\Display\DisplayModule.h"
+#include "Camera/Camera.h"
+#include "Camera/CameraManager.h"
+#include "Main/DisplayModule.h"
 
-
-namespace FlatEngine::Core::Modules::Display
+namespace FlatEngine::Display
 {
-	FlatEngine::Core::Modules::Display::Camera::Camera()
-		: Camera(std::shared_ptr<Simulation::ITransformable>())
+	Camera::Camera()
+		: Camera(std::shared_ptr<Core::ITransformable>())
 	{}
 
-	FlatEngine::Core::Modules::Display::Camera::Camera(std::shared_ptr<Simulation::ITransformable> origin)
+	Camera::Camera(std::shared_ptr<Core::ITransformable> origin)
 		: origin(origin), zoom(1)
 	{
 		CameraManager::AddCamera(this);
 	}
 
-	FlatEngine::Core::Modules::Display::Camera::~Camera()
+	Camera::~Camera()
 	{
 		CameraManager::RemoveCamera(this);
 	}
 
-	void FlatEngine::Core::Modules::Display::Camera::SetCameraActive()
+	void Camera::SetCameraActive()
 	{
 		CameraManager::SetActiveCamera(this);
 	}
 
-	bool FlatEngine::Core::Modules::Display::Camera::IsCameraActive()
+	bool Camera::IsCameraActive()
 	{
 		return CameraManager::activeCamera == this;
 	}
 
-	void FlatEngine::Core::Modules::Display::Camera::SetOrigin(std::shared_ptr<Simulation::ITransformable> value)
+	void Camera::SetOrigin(std::shared_ptr<Core::ITransformable> value)
 	{
 		origin = value;
 	}
 
-	void FlatEngine::Core::Modules::Display::Camera::SetZoom(float value)
+	void Camera::SetZoom(float value)
 	{
 		zoom = value;
 	}

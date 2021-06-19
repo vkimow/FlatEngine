@@ -1,9 +1,9 @@
 #pragma once
 
-#include "FlatEngineApi.h"
-#include "Pressable.h"
+#include "Main/FlatEngineApi.h"
+#include "Elements/Press/Pressable.h"
 
-namespace FlatEngine::Core::Modules::Input
+namespace FlatEngine::Input
 {
 
 	class FLAT_ENGINE_API PressableMouse : public Pressable
