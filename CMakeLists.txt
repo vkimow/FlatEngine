@@ -20,4 +20,3 @@ include("Functions")
 set(SFML_INCLUDE_DIR "${FLAT_VENDOR_DIR}/SFML/include")
 
 add_subdirectory(src/FlatEngine FlatEngine)
-add_subdirectory(src/Sandbox Sandbox)
