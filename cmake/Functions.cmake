@@ -1,23 +1,38 @@
-macro(define_dirs)
-    set(FLAT_ROOT_DIR       "${CMAKE_SOURCE_DIR}")
-    set(FLAT_INCLUDE_DIR    "${FLAT_ROOT_DIR}/include")
-    set(FLAT_SOURCE_DIR     "${FLAT_ROOT_DIR}/src")
-    set(FLAT_VENDOR_DIR     "${FLAT_ROOT_DIR}/vendor")
-    set(FLAT_PROJECT_DIR    "${FLAT_ROOT_DIR}/project")
-    set(FLAT_BIN_DIR        "${FLAT_ROOT_DIR}/bin")
-endmacro()
+function(add_flat_executable)
+    set(PREFIX THIS)
+    set(SINGLE_VALUES   EXECUTABLE_NAME SOLUTION_FOLDER OUTPUT_DIR)
+    set(MULTI_VALUES    SOURCES 
+                        PUBLIC_INCLUDE_DIRS
+                        PRIVATE_INCLUDE_DIRS
+                        PUBLIC_LINK_LIBS
+                        PRIVATE_LINK_LIBS
+                        )
 
-macro(define_global_properties)
-    set(CMAKE_CXX_STANDARD 17)
-    set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
+    # parse
+    cmake_parse_arguments(${PREFIX}
+                        ""
+                        "${SINGLE_VALUES}"
+                        "${MULTI_VALUES}"
+                        ${ARGN})
+             
+    if (NOT "${THIS_UNPARSED_ARGUMENTS}" STREQUAL "")
+        message(FATAL_ERROR "Extra unparsed arguments when calling add_flat_library: ${THIS_UNPARSED_ARGUMENTS}")
+    endif()
 
-    set_property(GLOBAL PROPERTY USE_FOLDERS ON)
-    set_property(GLOBAL PROPERTY PREDEFINED_TARGETS_FOLDER "CMake")
-    
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${FLAT_BIN_DIR}/${FLAT_CONFIG_STRING}/CMake")
-    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${FLAT_BIN_DIR}/${FLAT_CONFIG_STRING}/CMake")
-    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${FLAT_BIN_DIR}/${FLAT_CONFIG_STRING}/CMake")
-endmacro()
+    # create
+    add_executable(${THIS_EXECUTABLE_NAME} ${THIS_SOURCES})
+
+    # set properties
+    set_flat_target_properties(
+        TARGET                  ${THIS_EXECUTABLE_NAME}
+        SOLUTION_FOLDER         ${THIS_SOLUTION_FOLDER}
+        OUTPUT_DIR              ${THIS_OUTPUT_DIR}
+        PUBLIC_INCLUDE_DIRS     ${THIS_PUBLIC_INCLUDE_DIRS}
+        PRIVATE_INCLUDE_DIRS    ${THIS_PRIVATE_INCLUDE_DIRS}
+        PUBLIC_LINK_LIBS        ${THIS_PUBLIC_LINK_LIBS}
+        PRIVATE_LINK_LIBS       ${THIS_PRIVATE_LINK_LIBS}
+    )
+endfunction()
 
 function(add_flat_library)
     set(PREFIX THIS)
@@ -47,41 +62,110 @@ function(add_flat_library)
     string(TOLOWER ${THIS_LIBRARY_NAME} THIS_LIBRARY_LOWER_NAME)
     add_library("flat::${THIS_LIBRARY_LOWER_NAME}" ALIAS ${THIS_LIBRARY_NAME})
 
+    # set properties
+    set_flat_target_properties(
+        TARGET                  ${THIS_LIBRARY_NAME}
+        SOLUTION_FOLDER         ${THIS_SOLUTION_FOLDER}
+        OUTPUT_DIR              ${THIS_OUTPUT_DIR}
+        PUBLIC_INCLUDE_DIRS     ${THIS_PUBLIC_INCLUDE_DIRS}
+        PRIVATE_INCLUDE_DIRS    ${THIS_PRIVATE_INCLUDE_DIRS}
+        PUBLIC_LINK_LIBS        ${THIS_PUBLIC_LINK_LIBS}
+        PRIVATE_LINK_LIBS       ${THIS_PRIVATE_LINK_LIBS}
+    )
+endfunction()
+
+function(set_flat_target_properties)
+    set(PREFIX THIS)
+    set(SINGLE_VALUES TARGET SOLUTION_FOLDER OUTPUT_DIR)
+    set(MULTI_VALUES    PUBLIC_INCLUDE_DIRS
+                        PRIVATE_INCLUDE_DIRS
+                        PUBLIC_LINK_LIBS
+                        PRIVATE_LINK_LIBS
+                        )
+
+    # parse
+    cmake_parse_arguments(${PREFIX}
+                        ""
+                        "${SINGLE_VALUES}"
+                        "${MULTI_VALUES}"
+                        ${ARGN})
+             
+    if (NOT "${THIS_UNPARSED_ARGUMENTS}" STREQUAL "")
+        message(FATAL_ERROR "Extra unparsed arguments when calling add_flat_library: ${THIS_UNPARSED_ARGUMENTS}")
+    endif()
+    
     #include
     if(NOT "${THIS_PUBLIC_INCLUDE_DIRS}" STREQUAL "")
-        target_include_directories(${THIS_LIBRARY_NAME} PUBLIC ${THIS_PUBLIC_INCLUDE_DIRS})
+        target_include_directories(${THIS_TARGET} PUBLIC ${THIS_PUBLIC_INCLUDE_DIRS})
     endif()
 
     if(NOT "${THIS_PRIVATE_INCLUDE_DIRS}" STREQUAL "")
-        target_include_directories(${THIS_LIBRARY_NAME} PRIVATE ${THIS_PRIVATE_INCLUDE_DIRS})
+        target_include_directories(${THIS_TARGET} PRIVATE ${THIS_PRIVATE_INCLUDE_DIRS})
     endif()
 
     #link
     if(NOT "${THIS_PUBLIC_LINK_LIBS}" STREQUAL "")
-        target_link_libraries(${THIS_LIBRARY_NAME} PUBLIC ${THIS_PUBLIC_LINK_LIBS})
+        target_link_libraries(${THIS_TARGET} PUBLIC ${THIS_PUBLIC_LINK_LIBS})
     endif()
 
     if(NOT "${THIS_PRIVATE_LINK_LIBS}" STREQUAL "")
-        target_link_libraries(${THIS_LIBRARY_NAME} PRIVATE ${THIS_PRIVATE_LINK_LIBS})
+        target_link_libraries(${THIS_TARGET} PRIVATE ${THIS_PRIVATE_LINK_LIBS})
     endif()
 
     # folder
-    if(THIS_SOLUTION_FOLDER)
-        set_target_properties(${THIS_LIBRARY_NAME} PROPERTIES FOLDER FlatEngine/${THIS_SOLUTION_FOLDER})
-    else()
-        set_target_properties(${THIS_LIBRARY_NAME} PROPERTIES FOLDER FlatEngine)
+    if(NOT "${THIS_SOLUTION_FOLDER}" STREQUAL "")
+        set_target_properties(${THIS_TARGET} PROPERTIES FOLDER ${THIS_SOLUTION_FOLDER})
     endif()
 
-    # propertiesg
-    set_target_properties(${THIS_LIBRARY_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${THIS_OUTPUT_DIR})
-    set_target_properties(${THIS_LIBRARY_NAME} PROPERTIES ARCHIVE_OUTPUT_DIRECTORY ${THIS_OUTPUT_DIR})
-    set_target_properties(${THIS_LIBRARY_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${THIS_OUTPUT_DIR})
-
-    # preprocessor defenitions
-    # target_compile_definitions(${THIS_LIBRARY_NAME} $<$<CONFIG:Debug>:debug> $<$<CONFIG:Release>:release>)
+    # output dir
+    set_flat_output_dir(TARGET ${THIS_TARGET} OUTPUT_DIR ${THIS_OUTPUT_DIR})
 endfunction()
 
-macro(set_flat_library_dirs)
+function(set_flat_output_dir TARGET OUTPUT_DIR)
+    set(PREFIX THIS)
+    set(SINGLE_VALUES   TARGET OUTPUT_DIR)
+
+    # parse
+    cmake_parse_arguments(${PREFIX}
+                        ""
+                        "${SINGLE_VALUES}"
+                        ""
+                        ${ARGN})
+            
+    if (NOT "${THIS_UNPARSED_ARGUMENTS}" STREQUAL "")
+        message(FATAL_ERROR "Extra unparsed arguments when calling add_flat_library: ${THIS_UNPARSED_ARGUMENTS}")
+    endif()
+
+    set_target_properties(${THIS_TARGET} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${THIS_OUTPUT_DIR})
+    set_target_properties(${THIS_TARGET} PROPERTIES ARCHIVE_OUTPUT_DIRECTORY ${THIS_OUTPUT_DIR})
+    set_target_properties(${THIS_TARGET} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${THIS_OUTPUT_DIR})
+endfunction()
+
+function(set_flat_compile_defs)
+    set(PREFIX THIS)
+    set(SINGLE_VALUES   TARGET CONFIG)
+    set(MULTI_VALUES    COMPILE_DEFS
+                        )
+
+    # parse
+    cmake_parse_arguments(${PREFIX}
+                        ""
+                        "${SINGLE_VALUES}"
+                        "${MULTI_VALUES}"
+                        ${ARGN})
+            
+    if (NOT "${THIS_UNPARSED_ARGUMENTS}" STREQUAL "")
+        message(FATAL_ERROR "Extra unparsed arguments when calling add_flat_library: ${THIS_UNPARSED_ARGUMENTS}")
+    endif()
+      
+    if(NOT "${THIS_CONFIG}" STREQUAL "")
+        target_compile_definitions(${THIS_TARGET} $<$<CONFIG:${THIS_CONFIG}>:${THIS_COMPILE_DEFS}>)
+    else()
+        target_compile_definitions(${THIS_TARGET} ${THIS_COMPILE_DEFS})
+    endif()
+endfunction()
+
+function(set_flat_library_dirs)
     set(PREFIX THIS)
     set(SINGLE_VALUES LIBRARY_NAME SOURCE_DIR INCLUDE_DIR OUTPUT_DIR)
 
@@ -121,9 +205,9 @@ macro(set_flat_library_dirs)
     file(GLOB_RECURSE FLAT_CURRENT_AUTO_PUBLIC_HEADERS ${FLAT_CURRENT_INCLUDE_DIR}/*.h)
     set(FLAT_CURRENT_AUTO_PUBLIC_HEADERS ${FLAT_CURRENT_AUTO_PUBLIC_HEADERS} CACHE INTERNAL "")
     set_property(GLOBAL PROPERTY ${FLAT_${LIBRARY_UPPER_NAME}_AUTO_PUBLIC_HEADERS} ${FLAT_CURRENT_AUTO_PUBLIC_HEADERS})
-endmacro()
+endfunction()
 
-macro(set_flat_library_files)
+function(set_flat_library_files)
     set(PREFIX THIS)
     set(SINGLE_VALUES LIBRARY_NAME VARIABLE_NAME FILES_DIR)
     set(MULTI_VALUES FILES)
@@ -148,9 +232,9 @@ macro(set_flat_library_files)
         FILES_DIR ${THIS_FILES_DIR} 
         FILES ${FLAT_CURRENT_${THIS_VARIABLE_NAME}}
         )
-endmacro()
+endfunction()
 
-macro(set_flat_subsolution_folder)
+function(set_flat_subsolution_folder)
     set(PREFIX THIS)
     set(SINGLE_VALUES SUBSOLUTION_FOLDER_NAME)
 
@@ -178,8 +262,7 @@ macro(set_flat_subsolution_folder)
     set_property(GLOBAL PROPERTY FLAT_${SUBSOLUTION_FOLDER_UPPER_NAME}_SUBSOLUTION_SOURCE_DIR ${FLAT_CURRENT_SUBSOLUTION_SOURCE_DIR})
     set_property(GLOBAL PROPERTY FLAT_${SUBSOLUTION_FOLDER_UPPER_NAME}_SUBSOLUTION_INCLUDE_DIR ${FLAT_CURRENT_SUBSOLUTION_INCLUDE_DIR})
     set_property(GLOBAL PROPERTY FLAT_${SUBSOLUTION_FOLDER_UPPER_NAME}_SUBSOLUTION_OUTPUT_DIR ${FLAT_CURRENT_SUBSOLUTION_OUTPUT_DIR})
-
-endmacro()
+endfunction()
 
 function(generate_ide_folders)
     set(PREFIX THIS)
@@ -207,5 +290,4 @@ function(generate_ide_folders)
 
         source_group("${FILE_PATH}" FILES "${FILE}")
     endforeach()
-
 endfunction(generate_ide_folders)
