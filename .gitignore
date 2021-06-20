@@ -67,6 +67,7 @@ bld/
 bin/
 bin_int/
 src/Sandbox
+src/FlatEngine/Sandbox
 
 
 # Visual Studio 2015/2017 cache/options directory
