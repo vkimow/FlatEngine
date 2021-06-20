@@ -1,5 +1,5 @@
 #include "Controllers/Transform/RotateController.h"
-#include "Core/Main/Time/TimeModule.h"
+#include "Time/TimeModule.h"
 
 namespace FlatEngine::Actors::Controllers
 {

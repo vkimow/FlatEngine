@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Core/Main/FlatEngineApi.h"
+#include "Core/FlatEngineApi.h"
 #include "Input\Elements/Delta\Delta.h"
 #include "Display\Camera\Camera.h"
-#include "Core/Main/Update\UpdateElement.h"
+#include "Update\UpdateElement.h"
 #include "IZoomController.h"
 
 namespace FlatEngine::Actors::Controllers

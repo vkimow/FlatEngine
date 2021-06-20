@@ -1,6 +1,6 @@
 #include "Main/GameLooper.h"
-#include "Core/Main/Time/TimeModule.h"
-#include "Core/Main/Update/UpdateModule.h"
+#include "Time/TimeModule.h"
+#include "Update/UpdateModule.h"
 #include "Display/Main/DisplayModule.h"
 #include "Input/Main/InputModule.h"
 
