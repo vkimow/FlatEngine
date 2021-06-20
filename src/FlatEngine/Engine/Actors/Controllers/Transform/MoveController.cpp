@@ -1,6 +1,6 @@
 #include "Controllers/Transform/MoveController.h"
-#include "Core/Main/Time/TimeModule.h"
-#include "Core/Tools/VectorTools.h"
+#include "Time/TimeModule.h"
+#include "Tools/Vector/VectorTools.h"
 
 namespace FlatEngine::Actors::Controllers
 {

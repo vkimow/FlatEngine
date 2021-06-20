@@ -1,6 +1,4 @@
-set_flat_subsolution_folder(
-    SUBSOLUTION_FOLDER_NAME Engine
-    )
+set_flat_subsolution(NAME Engine)
 
 add_subdirectory(App)
 add_subdirectory(Actors)

@@ -1,8 +1,6 @@
 cd ..
 
-if exist project (
-    del /f /s /q project
-) else (
+if not exist project (
     mkdir project
 )
 

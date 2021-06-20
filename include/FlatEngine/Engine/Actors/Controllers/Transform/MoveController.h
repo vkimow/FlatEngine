@@ -1,12 +1,12 @@
 #pragma once
 
-#include "Core/Main/FlatEngineApi.h"
+#include "Core/FlatEngineApi.h"
 #include "Display\Camera\Camera.h"
-#include "Core/Main/Update\UpdateElement.h"
+#include "Update\UpdateElement.h"
 #include "Input/Main/InputModule.h"
 #include "Controllers/Transform/IMoveController.h"
-#include "Core/Transform/ITransformable.h"
-#include "Core/Transform/IMovable.h"
+#include "Transform/ITransformable.h"
+#include "Transform/IMovable.h"
 #include "Input/Elements/Vector/Vector.h"
 
 

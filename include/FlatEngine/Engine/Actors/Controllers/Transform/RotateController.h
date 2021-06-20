@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Core/Main/FlatEngineApi.h"
+#include "Core/FlatEngineApi.h"
 #include "Display/Camera/Camera.h"
-#include "Core\Main\Update\UpdateElement.h"
+#include "Update\UpdateElement.h"
 #include "Input/Elements/Delta/Delta.h"
 #include "Controllers/Transform/IRotateController.h"
-#include "Core/Transform/IRotatable.h"
+#include "Transform/IRotatable.h"
 
 
 namespace FlatEngine::Actors::Controllers

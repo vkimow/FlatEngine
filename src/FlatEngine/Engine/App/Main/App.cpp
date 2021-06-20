@@ -1,7 +1,7 @@
 #include "Main/App.h"
 #include <iostream>
 #include "SFML\Graphics.hpp"
-#include "Core/Tools/VectorTools.h"
+#include "Tools/Vector/VectorTools.h"
 #include "Main/GameLooper.h"
 
 namespace FlatEngine
