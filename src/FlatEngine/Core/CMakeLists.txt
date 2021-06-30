@@ -1,6 +1,6 @@
 set_flat_subsolution(NAME Core)
 
-add_subdirectory(Tools)
+add_subdirectory(Main)
 add_subdirectory(Time)
 add_subdirectory(Update)
 add_subdirectory(Transform)
@@ -8,4 +8,3 @@ add_subdirectory(Display)
 add_subdirectory(Input)
 #add_subdirectory(Audio)
 #add_subdirectory(Collision)
-add_subdirectory(Core)

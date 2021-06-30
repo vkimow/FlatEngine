@@ -1,9 +1,9 @@
-#include "Controllers/Camera/ZoomController.h"
+#include "FlatEngine/Engine/Actors/Controllers/Camera/ZoomController.h"
 
-namespace FlatEngine::Actors::Controllers
+namespace Flat::Engine::Actors
 {
-	ZoomController::ZoomController(Display::Camera* camera,
-								   std::shared_ptr<Input::Delta> input)
+	ZoomController::ZoomController(Core::Camera* camera,
+								   std::shared_ptr<Core::Input::Delta> input)
 		: camera(camera),
 		input(input)
 	{}

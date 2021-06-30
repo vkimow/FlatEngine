@@ -1,8 +1,8 @@
-#include "UpdateModule.h"
-#include "UpdateElement.h"
+#include "FlatEngine/Core/Update/UpdateModule.h"
+#include "FlatEngine/Core/Update/UpdateElement.h"
 #include <algorithm>
 
-namespace FlatEngine::Core
+namespace Flat::Core
 {
 	std::vector<UpdateElement*> UpdateModule::elements = {};
 

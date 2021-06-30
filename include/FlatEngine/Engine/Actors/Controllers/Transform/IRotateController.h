@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Core/FlatEngineApi.h"
+#include "FlatEngine/Core/Main/FlatEngineApi.h"
 
-namespace FlatEngine::Actors::Controllers
+namespace Flat::Engine::Actors
 {
 	class FLAT_ENGINE_API IRotateController
 	{

@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Core/FlatEngineApi.h"
+#include "FlatEngine/Core/Main/FlatEngineApi.h"
 #include <vector>
 
-namespace FlatEngine::Core
+namespace Flat::Core
 {
 	class UpdateElement;
 

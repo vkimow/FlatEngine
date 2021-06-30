@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Core/FlatEngineApi.h"
+#include "FlatEngine/Core/Main/FlatEngineApi.h"
 
-namespace FlatEngine::Core
+namespace Flat::Core
 {
 	class FLAT_ENGINE_API UpdateElement
 	{

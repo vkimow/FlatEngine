@@ -1,7 +1,7 @@
-#include "UpdateElement.h"
-#include "UpdateModule.h"
+#include "FlatEngine/Core/Update/UpdateElement.h"
+#include "FlatEngine/Core/Update/UpdateModule.h"
 
-namespace FlatEngine::Core
+namespace Flat::Core
 {
 	UpdateElement::UpdateElement()
 		: UpdateElement(0)

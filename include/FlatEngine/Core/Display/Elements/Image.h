@@ -1,10 +1,11 @@
 #pragma once
 
-#include "Core/FlatEngineApi.h"
-#include "Main\DisplayElement.h"
-#include "Tools\Sprite.h"
+#include "FlatEngine/Core/Main/FlatEngineApi.h"
+#include "FlatEngine/Core/Display/Main/DisplayElement.h"
+#include "FlatEngine/Core/Display/Tools/Sprite.h"
+#include "FlatEngine/Core/Transform/ITransformable.h"
 
-namespace FlatEngine::Display
+namespace Flat::Core
 {
 
 	class FLAT_ENGINE_API Image : public DisplayElement
@@ -16,7 +17,7 @@ namespace FlatEngine::Display
 		Image(std::shared_ptr<const Core::ITransformable> origin, const Sprite& sprite, size_t displayOrder);
 
 	public:
-		virtual void UpdateDrawable(const Display::Camera* const camera) override final;
+		virtual void UpdateDrawable(const Camera* const camera) override final;
 		virtual const sf::Drawable& GetDrawable() const override final;
 
 	public:

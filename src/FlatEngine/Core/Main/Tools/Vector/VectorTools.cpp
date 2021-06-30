@@ -1,7 +1,7 @@
 #pragma once
-#include "Vector/VectorTools.h"
+#include "FlatEngine/Core/Main/Tools/Vector/VectorTools.h"
 
-namespace FlatEngine::Core::Tools::Vector
+namespace Flat::Core::Tools::Vector
 {
     sf::Vector2f Normalize(const sf::Vector2f& source)
     {

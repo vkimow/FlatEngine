@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Core/FlatEngineApi.h"
+#include "FlatEngine/Core/Main/FlatEngineApi.h"
 #include "SFML/Window.hpp"
 
-namespace FlatEngine::Input
+namespace Flat::Core
 {
 	class FLAT_ENGINE_API InputElement
 	{

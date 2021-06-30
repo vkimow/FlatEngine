@@ -1,13 +1,12 @@
 #pragma once
 
-#include "Core/FlatEngineApi.h"
+#include "FlatEngine/Core/Main/FlatEngineApi.h"
 #include "SFML/Window.hpp"
-#include "Main\InputElement.h"
-#include "Tools/Events\Action.h"
+#include "FlatEngine/Core/Input/Main/InputElement.h"
+#include "FlatEngine/Core/Main/Events/Action.h"
 
-namespace FlatEngine::Input
+namespace Flat::Core::Input
 {
-
 	class FLAT_ENGINE_API Vector : public InputElement
 	{
 	protected:

@@ -1,23 +1,23 @@
 #pragma once
 
-#include "Core/FlatEngineApi.h"
-#include "Display\Camera\Camera.h"
-#include "Update\UpdateElement.h"
-#include "Input\Elements\Vector\Vector.h"
-#include "Controllers/Transform/IScaleController.h"
-#include "Transform/IScalable.h"
+#include "FlatEngine/Core/Main/FlatEngineApi.h"
+#include "FlatEngine/Core/Display\Camera\Camera.h"
+#include "FlatEngine/Core/Update\UpdateElement.h"
+#include "FlatEngine/Core/Input\Elements\Vector\Vector.h"
+#include "FlatEngine/Engine/Actors/Controllers/Transform/IScaleController.h"
+#include "FlatEngine/Core/Transform/IScalable.h"
 
 
-namespace FlatEngine::Actors::Controllers
+namespace Flat::Engine::Actors
 {
 	class FLAT_ENGINE_API ScaleController final : public IScaleController, public Core::UpdateElement
 	{
 	public:
 		ScaleController(std::shared_ptr<Core::IScalable> scalable,
-					   std::shared_ptr<Input::Vector> input);
+					   std::shared_ptr<Core::Input::Vector> input);
 
-		ScaleController(std::shared_ptr < Core::IScalable> scalable,
-					   std::shared_ptr<Input::Vector> input,
+		ScaleController(std::shared_ptr <Core::IScalable> scalable,
+					   std::shared_ptr<Core::Input::Vector> input,
 					   float speed);
 
 		~ScaleController();
@@ -33,7 +33,7 @@ namespace FlatEngine::Actors::Controllers
 
 	private:
 		std::shared_ptr<Core::IScalable> scalable;
-		std::shared_ptr<Input::Vector> input;
+		std::shared_ptr<Core::Input::Vector> input;
 		float speed;
 	};
 }

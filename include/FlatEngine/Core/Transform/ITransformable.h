@@ -1,13 +1,13 @@
 #pragma once
 
-#include "Core/FlatEngineApi.h"
-#include "IMovable.h"
-#include "IRotatable.h"
-#include "IScalable.h"
+#include "FlatEngine/Core/Main/FlatEngineApi.h"
+#include "FlatEngine/Core/Transform/IMovable.h"
+#include "FlatEngine/Core/Transform/IRotatable.h"
+#include "FlatEngine/Core/Transform/IScalable.h"
 #include "SFML/System.hpp"
 
 
-namespace FlatEngine::Core
+namespace Flat::Core
 {
 	class FLAT_ENGINE_API ITransformable : public IMovable, public IRotatable, public IScalable
 	{

@@ -1,22 +1,23 @@
 #pragma once
 
-#include "Core/FlatEngineApi.h"
-#include "Main\DisplayElement.h"
+#include "FlatEngine/Core/Main/FlatEngineApi.h"
+#include "FlatEngine/Core/Display/Main/DisplayElement.h"
+#include "FlatEngine/Core/Transform/ITransformable.h"
 #include "SFML\Graphics.hpp"
 #include <memory>
 
-namespace FlatEngine::Display
+namespace Flat::Core
 {
 	class FLAT_ENGINE_API Shape : public DisplayElement
 	{
 	public:
 		Shape() = delete;
-		Shape(std::shared_ptr<const Core::ITransformable> origin);
-		Shape(std::shared_ptr<const Core::ITransformable> origin, std::shared_ptr<sf::Shape> shape);
-		Shape(std::shared_ptr<const Core::ITransformable> origin, std::shared_ptr<sf::Shape> shape, size_t displayOrder);
+		Shape(std::shared_ptr<const ITransformable> origin);
+		Shape(std::shared_ptr<const ITransformable> origin, std::shared_ptr<sf::Shape> shape);
+		Shape(std::shared_ptr<const ITransformable> origin, std::shared_ptr<sf::Shape> shape, size_t displayOrder);
 
 	public:
-		virtual void UpdateDrawable(const Display::Camera* const camera) override final;
+		virtual void UpdateDrawable(const Camera* const camera) override final;
 		virtual const sf::Drawable& GetDrawable() const override final;
 
 		std::shared_ptr<sf::Shape> GetShape() const;

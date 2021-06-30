@@ -1,13 +1,13 @@
-#include "Main\DisplayModule.h"
-#include "Main\DisplayElement.h"
-#include "Camera\CameraManager.h"
-#include "Camera\Camera.h"
+#include "FlatEngine/Core/Display/Main\DisplayModule.h"
+#include "FlatEngine/Core/Display/Main\DisplayElement.h"
+#include "FlatEngine/Core/Display/Camera\CameraManager.h"
+#include "FlatEngine/Core/Display/Camera\Camera.h"
 #include <iostream>
 
-namespace FlatEngine::Display
+namespace Flat::Core
 {
 	std::vector<DisplayElement*> DisplayModule::elements = {};
-	Display::ScreenSettings* DisplayModule::screenSettings = nullptr;
+	ScreenSettings* DisplayModule::screenSettings = nullptr;
 
 	DisplayModule::DisplayModule(sf::RenderWindow* renderWindow)
 		:
@@ -18,7 +18,7 @@ namespace FlatEngine::Display
 		unsigned int width = resolution.x;
 		unsigned int height = resolution.y;
 
-		screenSettings = new Display::ScreenSettings(width, height);
+		screenSettings = new ScreenSettings(width, height);
 	}
 
 	DisplayModule::~DisplayModule()
@@ -30,7 +30,7 @@ namespace FlatEngine::Display
 	void DisplayModule::Update()
 	{
 		renderWindow->clear();
-		Display::Camera* activeCamera = cameraManager->GetActiveCamera();
+		Camera* activeCamera = cameraManager->GetActiveCamera();
 
 		if(activeCamera == nullptr)
 			return;
@@ -44,7 +44,7 @@ namespace FlatEngine::Display
 		renderWindow->display();
 	}
 
-	inline void DisplayModule::Update(DisplayElement* element, const Display::Camera* const camera)
+	inline void DisplayModule::Update(DisplayElement* element, const Camera* const camera)
 	{
 		element->UpdateDrawable(camera);
 	}

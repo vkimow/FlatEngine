@@ -1,11 +1,10 @@
 #pragma once
 
-#include "Core/FlatEngineApi.h"
-#include "Elements/Press/Pressable.h"
+#include "FlatEngine/Core/Main/FlatEngineApi.h"
+#include "FlatEngine/Core/Input/Elements/Press/Pressable.h"
 
-namespace FlatEngine::Input
+namespace Flat::Core::Input
 {
-
 	class FLAT_ENGINE_API PressableKey : public Pressable
 	{
 	public:

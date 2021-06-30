@@ -1,23 +1,23 @@
 #pragma once
 
-#include "Core/FlatEngineApi.h"
-#include "Display/Camera/Camera.h"
-#include "Update\UpdateElement.h"
-#include "Input/Elements/Delta/Delta.h"
-#include "Controllers/Transform/IRotateController.h"
-#include "Transform/IRotatable.h"
+#include "FlatEngine/Core/Main/FlatEngineApi.h"
+#include "FlatEngine/Core/Display/Camera/Camera.h"
+#include "FlatEngine/Core/Update\UpdateElement.h"
+#include "FlatEngine/Core/Input/Elements/Delta/Delta.h"
+#include "FlatEngine/Engine/Actors/Controllers/Transform/IRotateController.h"
+#include "FlatEngine/Core/Transform/IRotatable.h"
 
 
-namespace FlatEngine::Actors::Controllers
+namespace Flat::Engine::Actors
 {
 	class FLAT_ENGINE_API RotateController final : public IRotateController, public Core::UpdateElement
 	{
 	public:
 		RotateController(std::shared_ptr<Core::IRotatable> rotatable,
-						 std::shared_ptr<Input::Delta> input);
+						 std::shared_ptr<Core::Input::Delta> input);
 
 		RotateController(std::shared_ptr<Core::IRotatable> rotatable,
-						 std::shared_ptr<Input::Delta> input,
+						 std::shared_ptr<Core::Input::Delta> input,
 						 float speed);
 
 		~RotateController();
@@ -33,7 +33,7 @@ namespace FlatEngine::Actors::Controllers
 
 	private:
 		std::shared_ptr<Core::IRotatable> rotatable;
-		std::shared_ptr<Input::Delta> input;
+		std::shared_ptr<Core::Input::Delta> input;
 		float speed;
 	};
 }

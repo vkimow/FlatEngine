@@ -11,9 +11,9 @@ set(FLAT_PROJECT_NAME ${PROJECT_NAME})
 
 # includes
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
-include("SetupGlobalDirectories")
-include("SetupGlobalProperties")
 include("SetupConfigurations")
+include("SetupGlobalProperties")
+include("SetupGlobalDirectories")
 include("Functions")
 
 # vendors include dirs

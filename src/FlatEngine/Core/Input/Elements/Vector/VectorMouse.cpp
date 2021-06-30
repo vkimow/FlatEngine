@@ -1,17 +1,17 @@
-#include "Elements/Vector/VectorMouse.h"
+#include "FlatEngine/Core/Input/Elements/Vector/VectorMouse.h"
 
-namespace FlatEngine::Input{
-
-VectorMouse::VectorMouse()
-{}
-
-sf::Vector2f VectorMouse::GetVectorInput(const sf::Event& event)
+namespace Flat::Core::Input
 {
-	sf::Vector2i newMousePosInt = sf::Mouse::getPosition();
-	sf::Vector2f oldMousePos = mousePosition;
-	mousePosition = sf::Vector2f((float)newMousePosInt.x, (float)newMousePosInt.y);
+	VectorMouse::VectorMouse()
+	{}
 
-	return sf::Vector2f(mousePosition.x - oldMousePos.x, mousePosition.y - oldMousePos.y);
-}
+	sf::Vector2f VectorMouse::GetVectorInput(const sf::Event& event)
+	{
+		sf::Vector2i newMousePosInt = sf::Mouse::getPosition();
+		sf::Vector2f oldMousePos = mousePosition;
+		mousePosition = sf::Vector2f((float)newMousePosInt.x, (float)newMousePosInt.y);
+
+		return sf::Vector2f(mousePosition.x - oldMousePos.x, mousePosition.y - oldMousePos.y);
+	}
 
 }

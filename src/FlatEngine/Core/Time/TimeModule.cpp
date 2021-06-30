@@ -1,6 +1,6 @@
-#include "TimeModule.h"
+#include "FlatEngine/Core/Time/TimeModule.h"
 
-namespace FlatEngine::Core
+namespace Flat::Core
 {
 	float TimeModule::deltaTime = 0;
 

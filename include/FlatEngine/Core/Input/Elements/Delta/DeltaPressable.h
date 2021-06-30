@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Core/FlatEngineApi.h"
-#include "Elements/Delta/Delta.h"
+#include "FlatEngine/Core/Main/FlatEngineApi.h"
+#include "FlatEngine/Core/Input/Elements/Delta/Delta.h"
 
-namespace FlatEngine::Input
+namespace Flat::Core::Input
 {
 	class  Pressable;
 

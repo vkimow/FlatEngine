@@ -1,22 +1,22 @@
 #pragma once
 
-#include "Core/FlatEngineApi.h"
+#include "FlatEngine/Core/Main/FlatEngineApi.h"
 #include "SFML/Window.hpp"
 
 #pragma region Forward Declaration
 
-namespace FlatEngine::Core::Modules
+namespace Flat::Engine
 {
-	class InputElement;
+	class GameLooper;
 }
 
 #pragma endregion
 
-namespace FlatEngine::Input
+namespace Flat::Core
 {
 	class FLAT_ENGINE_API InputModule final
 	{
-		friend class GameLooper;
+		friend class Engine::GameLooper;
 		friend class InputElement;
 
 	private:

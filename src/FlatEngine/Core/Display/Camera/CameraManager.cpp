@@ -1,9 +1,9 @@
-#include "Camera/CameraManager.h"
-#include "Camera/Camera.h"
-#include "Main\DisplayModule.h"
+#include "FlatEngine/Core/Display/Camera/CameraManager.h"
+#include "FlatEngine/Core/Display/Camera/Camera.h"
+#include "FlatEngine/Core/Display/Main/DisplayModule.h"
 #include "SFML\System.hpp"
 
-namespace FlatEngine::Display
+namespace Flat::Core
 {
 	Camera* CameraManager::activeCamera = NULL;
 	std::list<Camera*> CameraManager::cameras = {};

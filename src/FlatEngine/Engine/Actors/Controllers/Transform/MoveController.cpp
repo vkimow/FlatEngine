@@ -1,17 +1,17 @@
-#include "Controllers/Transform/MoveController.h"
-#include "Time/TimeModule.h"
-#include "Tools/Vector/VectorTools.h"
+#include "FlatEngine/Engine/Actors/Controllers/Transform/MoveController.h"
+#include "FlatEngine/Core/Time/TimeModule.h"
+#include "FlatEngine/Core/Main/Tools/Vector/VectorTools.h"
 
-namespace FlatEngine::Actors::Controllers
+namespace Flat::Engine::Actors
 {
 
 	MoveController::MoveController(std::shared_ptr<Core::IMovable> movable,
-								   std::shared_ptr<Input::Vector> input)
+								   std::shared_ptr<Core::Input::Vector> input)
 		: MoveController(movable, input, 1)
 	{}
 
 	MoveController::MoveController(std::shared_ptr<Core::IMovable> movable,
-								   std::shared_ptr<Input::Vector> input,
+								   std::shared_ptr<Core::Input::Vector> input,
 								   float speed)
 		: movable(movable),
 		input(input),
