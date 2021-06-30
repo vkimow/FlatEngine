@@ -2,9 +2,6 @@ cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
-# vendors
-add_subdirectory(vendor/SFML Vendor/SFML)
-
 # project
 project(FlatEngine CXX)
 set(FLAT_PROJECT_NAME ${PROJECT_NAME})
