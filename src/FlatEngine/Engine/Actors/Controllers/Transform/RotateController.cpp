@@ -1,16 +1,16 @@
-#include "Controllers/Transform/RotateController.h"
-#include "Time/TimeModule.h"
+#include "FlatEngine/Engine/Actors/Controllers/Transform/RotateController.h"
+#include "FlatEngine/Core/Time/TimeModule.h"
 
-namespace FlatEngine::Actors::Controllers
+namespace Flat::Engine::Actors
 {
 
 	RotateController::RotateController(std::shared_ptr<Core::IRotatable> rotatable,
-									   std::shared_ptr<Input::Delta> input)
+									   std::shared_ptr<Core::Input::Delta> input)
 		: RotateController(rotatable, input, 1)
 	{}
 
 	RotateController::RotateController(std::shared_ptr<Core::IRotatable> rotatable,
-									   std::shared_ptr<Input::Delta> input,
+									   std::shared_ptr<Core::Input::Delta> input,
 									   float speed)
 		: rotatable(rotatable),
 		input(input),

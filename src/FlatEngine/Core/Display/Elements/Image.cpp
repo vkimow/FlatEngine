@@ -1,6 +1,6 @@
-#include "Elements/Image.h"
+#include "FlatEngine/Core/Display/Elements/Image.h"
 
-namespace FlatEngine::Display{
+namespace Flat::Core{
 
 Image::Image(std::shared_ptr<const Core::ITransformable> origin)
 	: Image(origin, Sprite())
@@ -16,7 +16,7 @@ Image::Image(std::shared_ptr<const Core::ITransformable> origin, const Sprite& s
 	DisplayElement(origin, displayOrder)
 {}
 
-void Image::UpdateDrawable(const Display::Camera* const camera)
+void Image::UpdateDrawable(const Camera* const camera)
 {
 	sf::Vector2f screenPosition(GetScreenPosition(camera));
 	sprite.sfmlSprite.setPosition(std::move(screenPosition));

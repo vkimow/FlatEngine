@@ -1,10 +1,9 @@
 #pragma once
 
-#include "Core/FlatEngineApi.h"
-#include "Elements/Vector/VectorDelta.h"
+#include "FlatEngine/Core/Main/FlatEngineApi.h"
+#include "FlatEngine/Core/Input/Elements/Vector/VectorDelta.h"
 
-
-namespace FlatEngine::Input
+namespace Flat::Core::Input
 {
 	class Pressable;
 

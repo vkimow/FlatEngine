@@ -1,7 +1,7 @@
-#include "Elements/Delta/Delta.h"
-#include "Main\InputModule.h"
+#include "FlatEngine/Core/Input/Elements/Delta/Delta.h"
+#include "FlatEngine/Core/Input/Main/InputModule.h"
 
-namespace FlatEngine::Input
+namespace Flat::Core::Input
 {
 	Delta::Delta()
 		: Delta(0.05f)

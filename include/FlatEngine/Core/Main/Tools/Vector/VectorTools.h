@@ -1,7 +1,7 @@
 #pragma once
 #include "SFML/System.hpp"
 
-namespace FlatEngine::Core::Tools::Vector
+namespace Flat::Core::Tools::Vector
 {
     sf::Vector2f Normalize(const sf::Vector2f& source);
     float Length(const sf::Vector2f& source);

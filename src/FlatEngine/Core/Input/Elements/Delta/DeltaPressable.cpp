@@ -1,9 +1,9 @@
-#include "Elements/Delta/DeltaPressable.h"
+#include "FlatEngine/Core/Input/Elements/Delta/DeltaPressable.h"
 
-#include "Elements/Press\Pressable.h"
-#include "Elements/Press\PressableKey.h"
+#include "FlatEngine/Core/Input/Elements/Press\Pressable.h"
+#include "FlatEngine/Core/Input/Elements/Press\PressableKey.h"
 
-namespace FlatEngine::Input
+namespace Flat::Core::Input
 {
 	DeltaPressable::DeltaPressable(const std::shared_ptr<Pressable>& positive, const std::shared_ptr<Pressable>& negative)
 		:

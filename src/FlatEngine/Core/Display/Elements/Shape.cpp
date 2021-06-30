@@ -1,22 +1,22 @@
-#include "Elements/Shape.h"
+#include "FlatEngine/Core/Display/Elements/Shape.h"
 
-namespace FlatEngine::Display{
+namespace Flat::Core{
 
-Shape::Shape(std::shared_ptr<const Core::ITransformable> origin)
+Shape::Shape(std::shared_ptr<const ITransformable> origin)
 	: Shape(origin, std::shared_ptr<sf::Shape>())
 {}
 
-Shape::Shape(std::shared_ptr<const Core::ITransformable> origin, std::shared_ptr<sf::Shape> shape)
+Shape::Shape(std::shared_ptr<const ITransformable> origin, std::shared_ptr<sf::Shape> shape)
 	: Shape(origin, shape, 0)
 {}
 
-Shape::Shape(std::shared_ptr<const Core::ITransformable> origin, std::shared_ptr<sf::Shape> shape, size_t displayOrder)
+Shape::Shape(std::shared_ptr<const ITransformable> origin, std::shared_ptr<sf::Shape> shape, size_t displayOrder)
 	: 
 	shape(shape),
 	DisplayElement(origin, displayOrder)
 {}
 
-void Shape::UpdateDrawable(const Display::Camera* const camera)
+void Shape::UpdateDrawable(const Camera* const camera)
 {
 	sf::Vector2f screenPosition = GetScreenPosition(camera);
 	shape->setPosition(std::move(screenPosition));

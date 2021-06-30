@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Core/FlatEngineApi.h"
-#include "Elements/Vector/Vector.h"
+#include "FlatEngine/Core/Main/FlatEngineApi.h"
+#include "FlatEngine/Core/Input/Elements/Vector/Vector.h"
 
-namespace FlatEngine::Input
+namespace Flat::Core::Input
 {
 	class Pressable;
 	class Delta;

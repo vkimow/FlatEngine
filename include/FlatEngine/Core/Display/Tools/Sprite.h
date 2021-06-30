@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Core/FlatEngineApi.h"
+#include "FlatEngine/Core/Main/FlatEngineApi.h"
 #include "SFML\Graphics.hpp"
 #include <memory>
 
-namespace FlatEngine::Display
+namespace Flat::Core
 {
 	class FLAT_ENGINE_API Sprite
 	{

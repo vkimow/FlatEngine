@@ -1,17 +1,9 @@
 #pragma once
-#include "Core/FlatEngineApi.h"
+#include "FlatEngine/Core/Main/FlatEngineApi.h"
+#include "SFML/Graphics.hpp"
 #include <string>
 
-#pragma region Forward Declaration
-
-namespace FlatEngine
-{
-	class GameLooper;
-}
-
-#pragma endregion
-
-namespace FlatEngine
+namespace Flat::Engine
 {
 	class FLAT_ENGINE_API App
 	{
@@ -29,6 +21,6 @@ namespace FlatEngine
 	private:
 		static bool isAppActive;
 		sf::Window* sfmlApp;
-		GameLooper* gameLooper;
+		class GameLooper* gameLooper;
 	};
 }

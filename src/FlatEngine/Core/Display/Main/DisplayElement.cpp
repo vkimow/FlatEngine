@@ -1,8 +1,9 @@
-#include "Main/DisplayElement.h"
-#include "Main/DisplayModule.h" 
-#include "Camera/Camera.h"
+#include "FlatEngine/Core/Display/Main/DisplayElement.h"
+#include "FlatEngine/Core/Display/Main/DisplayModule.h" 
+#include "FlatEngine/Core/Display/Camera/Camera.h"
 
-namespace FlatEngine::Display
+
+namespace Flat::Core
 {
 	DisplayElement::DisplayElement(std::shared_ptr<const Core::ITransformable> origin)
 		: DisplayElement(origin, 0)
@@ -19,9 +20,9 @@ namespace FlatEngine::Display
 		DisplayModule::RemoveElement(this);
 	}
 
-	sf::Vector2f DisplayElement::GetScreenPosition(const Display::Camera* const camera)
+	sf::Vector2f DisplayElement::GetScreenPosition(const Camera* const camera)
 	{
-		return Display::FromWorldToScreenSpace(origin->GetPosition(), camera);
+		return FromWorldToScreenSpace(origin->GetPosition(), camera);
 	}
 
 	void DisplayElement::SetDisplayOrder(int value)

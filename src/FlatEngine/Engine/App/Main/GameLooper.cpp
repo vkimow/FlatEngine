@@ -1,17 +1,17 @@
-#include "Main/GameLooper.h"
-#include "Time/TimeModule.h"
-#include "Update/UpdateModule.h"
-#include "Display/Main/DisplayModule.h"
-#include "Input/Main/InputModule.h"
+#include "FlatEngine/Engine/App/Main/GameLooper.h"
+#include "FlatEngine/Core/Time/TimeModule.h"
+#include "FlatEngine/Core/Update/UpdateModule.h"
+#include "FlatEngine/Core/Display/Main/DisplayModule.h"
+#include "FlatEngine/Core/Input/Main/InputModule.h"
 
-namespace FlatEngine
+namespace Flat::Engine
 {
 	GameLooper::GameLooper(App* app, sf::RenderWindow* renderWindow)
 		:
-		inputModule(new Input::InputModule(renderWindow)),
+		inputModule(new Core::InputModule(renderWindow)),
 		timeModule(new Core::TimeModule()),
 		logicModule(new Core::UpdateModule()),
-		displayModule(new Display::DisplayModule(renderWindow))
+		displayModule(new Core::DisplayModule(renderWindow))
 	{}
 
 	GameLooper::~GameLooper()

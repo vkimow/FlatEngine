@@ -1,10 +1,9 @@
-#include "Main/App.h"
+#include "FlatEngine/Engine/App/Main/App.h"
 #include <iostream>
-#include "SFML\Graphics.hpp"
-#include "Tools/Vector/VectorTools.h"
-#include "Main/GameLooper.h"
+#include "FlatEngine/Core/Main/Tools/Vector/VectorTools.h"
+#include "FlatEngine/Engine/App/Main/GameLooper.h"
 
-namespace FlatEngine
+namespace Flat::Engine
 {
 	bool App::isAppActive = false;
 

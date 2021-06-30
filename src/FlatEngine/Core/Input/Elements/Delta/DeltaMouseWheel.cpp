@@ -1,25 +1,24 @@
-#include "Elements/Delta/DeltaMouseWheel.h"
+#include "FlatEngine/Core/Input/Elements/Delta/DeltaMouseWheel.h"
 
-namespace FlatEngine::Input{
-
-DeltaMouseWheel::DeltaMouseWheel(sf::Mouse::Wheel wheel)
-	: wheel(wheel)
-{}
-
-DeltaMouseWheel::~DeltaMouseWheel()
-{}
-
-float DeltaMouseWheel::GetDeltaInput(const sf::Event& event)
+namespace Flat::Core::Input
 {
-	if(event.type == sf::Event::MouseWheelScrolled)
+	DeltaMouseWheel::DeltaMouseWheel(sf::Mouse::Wheel wheel)
+		: wheel(wheel)
+	{}
+
+	DeltaMouseWheel::~DeltaMouseWheel()
+	{}
+
+	float DeltaMouseWheel::GetDeltaInput(const sf::Event& event)
 	{
-		if(event.mouseWheelScroll.wheel == wheel)
+		if (event.type == sf::Event::MouseWheelScrolled)
 		{
-			return event.mouseWheelScroll.delta;
+			if (event.mouseWheelScroll.wheel == wheel)
+			{
+				return event.mouseWheelScroll.delta;
+			}
 		}
+
+		return 0;
 	}
-
-	return 0;
-}
-
 }

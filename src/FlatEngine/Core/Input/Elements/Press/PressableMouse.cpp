@@ -1,17 +1,17 @@
-#include "Elements/Press/PressableMouse.h"
+#include "FlatEngine/Core/Input/Elements/Press/PressableMouse.h"
 
-namespace FlatEngine::Input{
-
-PressableMouse::PressableMouse(sf::Mouse::Button button)
-	:
-	button(button)
-{}
-
-PressableMouse::~PressableMouse() {}
-
-bool PressableMouse::GetPressInput(const sf::Event& event)
+namespace Flat::Core::Input
 {
-	return sf::Mouse::isButtonPressed(button);
-}
+	PressableMouse::PressableMouse(sf::Mouse::Button button)
+		:
+		button(button)
+	{}
+
+	PressableMouse::~PressableMouse() {}
+
+	bool PressableMouse::GetPressInput(const sf::Event& event)
+	{
+		return sf::Mouse::isButtonPressed(button);
+	}
 
 }

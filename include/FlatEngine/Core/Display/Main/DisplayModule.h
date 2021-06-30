@@ -1,23 +1,24 @@
 #pragma once
 
-#include "Core/FlatEngineApi.h"
-#include "Tools/ScreenSettings.h"
+#include "FlatEngine/Core/Main/FlatEngineApi.h"
+#include "FlatEngine/Core/Display/Tools/ScreenSettings.h"
 #include "SFML/Graphics.hpp"
 #include <vector>
 
-namespace FlatEngine::Display
+namespace Flat::Engine
 {
-	class CameraManager;
-	class Camera;
+	class GameLooper;
 }
 
-namespace FlatEngine::Display
+namespace Flat::Core
 {
 	class DisplayElement;
+	class CameraManager;
+	class Camera;
 
 	class FLAT_ENGINE_API DisplayModule final
 	{
-		friend class GameLooper;
+		friend class Engine::GameLooper;
 		friend class DisplayElement;
 
 	private:
@@ -31,10 +32,10 @@ namespace FlatEngine::Display
 		void Update();
 
 	public:
-		static const Display::ScreenSettings* const GetScreenSettings() { return screenSettings; }
+		static const ScreenSettings* const GetScreenSettings() { return screenSettings; }
 
 	private:
-		inline void Update(DisplayElement* element, const Display::Camera* const camera);
+		inline void Update(DisplayElement* element, const Camera* const camera);
 		inline void Draw(DisplayElement* element);
 
 	private:
@@ -44,11 +45,11 @@ namespace FlatEngine::Display
 
 	private:
 		sf::RenderWindow* const renderWindow;
-		Display::CameraManager* cameraManager;
+		CameraManager* cameraManager;
 
 	private:
 		static std::vector<DisplayElement*> elements;
-		static Display::ScreenSettings* screenSettings;
+		static ScreenSettings* screenSettings;
 	};
 }
 

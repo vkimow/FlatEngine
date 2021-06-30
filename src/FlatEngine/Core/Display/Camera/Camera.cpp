@@ -1,14 +1,14 @@
-#include "Camera/Camera.h"
-#include "Camera/CameraManager.h"
-#include "Main/DisplayModule.h"
+#include "FlatEngine/Core/Display/Camera/Camera.h"
+#include "FlatEngine/Core/Display/Camera/CameraManager.h"
+#include "FlatEngine/Core/Display/Main/DisplayModule.h"
 
-namespace FlatEngine::Display
+namespace Flat::Core
 {
 	Camera::Camera()
-		: Camera(std::shared_ptr<Core::ITransformable>())
+		: Camera(std::shared_ptr<ITransformable>())
 	{}
 
-	Camera::Camera(std::shared_ptr<Core::ITransformable> origin)
+	Camera::Camera(std::shared_ptr<ITransformable> origin)
 		: origin(origin), zoom(1)
 	{
 		CameraManager::AddCamera(this);
@@ -29,7 +29,7 @@ namespace FlatEngine::Display
 		return CameraManager::activeCamera == this;
 	}
 
-	void Camera::SetOrigin(std::shared_ptr<Core::ITransformable> value)
+	void Camera::SetOrigin(std::shared_ptr<ITransformable> value)
 	{
 		origin = value;
 	}

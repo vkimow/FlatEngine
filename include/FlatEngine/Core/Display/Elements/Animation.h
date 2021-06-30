@@ -1,12 +1,12 @@
 #pragma once
 
-#include "Core/FlatEngineApi.h"
-#include "Main/DisplayElement.h"
-#include "Tools\Sprite.h"
-#include "Tools\FrameSpeed.h"
+#include "FlatEngine/Core/Main/FlatEngineApi.h"
+#include "FlatEngine/Core/Display/Main/DisplayElement.h"
+#include "FlatEngine/Core/Display/Tools/Sprite.h"
+#include "FlatEngine/Core/Display/Tools/FrameSpeed.h"
 #include <vector>
 
-namespace FlatEngine::Display
+namespace Flat::Core
 {
 	class FLAT_ENGINE_API Animation : DisplayElement
 	{
@@ -20,7 +20,7 @@ namespace FlatEngine::Display
 
 
 	public:
-		virtual void UpdateDrawable(const Display::Camera* const camera) override final;
+		virtual void UpdateDrawable(const Camera* const camera) override final;
 		virtual const sf::Drawable& GetDrawable() const override final;
 
 	public:

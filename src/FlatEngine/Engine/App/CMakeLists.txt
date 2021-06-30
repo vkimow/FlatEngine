@@ -29,11 +29,16 @@ add_flat_library(
     NAME ${PROJECT_NAME}
     SOLUTION_FOLDER ${FLAT_CURRENT_SUBSOLUTION}
     OUTPUT_DIR ${FLAT_CURRENT_OUTPUT_DIR}
-    SOURCES ${FLAT_CURRENT_SOURCES} ${FLAT_CURRENT_PUBLIC_HEADERS}
-    PRIVATE_INCLUDE_DIRS    ${FLAT_CURRENT_INCLUDE_DIR}
-                            ${FLAT_CURRENT_SOURCE_DIR}
-                            ${FLAT_CORE_SUBSOLUTION_INCLUDE_DIR}
+    SOURCES ${FLAT_CURRENT_SOURCES} ${FLAT_CURRENT_PUBLIC_HEADERS}   
+    PRIVATE_INCLUDE_DIRS    ${FLAT_INCLUDE_DIR}
                             ${SFML_INCLUDE_DIR}
-    PUBLIC_LINK_LIBS    flat::core
+    PUBLIC_LINK_LIBS    flat::main
+                        flat::display
+                        flat::input
+                        flat::time
+                        flat::transform
+                        flat::update
+                        # flat::audio
+                        # flat::collision
                         flat::actors
     )

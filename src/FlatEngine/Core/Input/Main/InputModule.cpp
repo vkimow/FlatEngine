@@ -1,9 +1,9 @@
-#include "Main/InputModule.h"
-#include "Main/InputElement.h"
+#include "FlatEngine/Core/Input/Main/InputModule.h"
+#include "FlatEngine/Core/Input/Main/InputElement.h"
 #include <vector>
 
 
-namespace FlatEngine::Input
+namespace Flat::Core
 {
 	std::vector<InputElement*> InputModule::elements = {};
 
