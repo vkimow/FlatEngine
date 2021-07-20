@@ -11,6 +11,7 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 include("SetupConfigurations")
 include("SetupGlobalProperties")
 include("SetupGlobalDirectories")
+include("SetupVendorLibs")
 include("Functions")
 
 # vendors include dirs

@@ -26,9 +26,13 @@ set_flat_target_files(
 add_flat_library(   
     NAME ${PROJECT_NAME}
     SOLUTION_FOLDER ${FLAT_CURRENT_SUBSOLUTION}
-    OUTPUT_DIR ${FLAT_CURRENT_OUTPUT_DIR}
     SOURCES ${FLAT_CURRENT_SOURCES} ${FLAT_CURRENT_PUBLIC_HEADERS}
     PRIVATE_INCLUDE_DIRS    ${FLAT_INCLUDE_DIR}
                             ${SFML_INCLUDE_DIR}
-    PRIVATE_LINK_LIBS SFML
+    PUBLIC_LINK_LIBS    sfml::audio    
+                        sfml::graphics 
+                        sfml::main     
+                        sfml::network  
+                        sfml::system   
+                        sfml::window
     )
