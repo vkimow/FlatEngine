@@ -2,5 +2,6 @@
 
 int main()
 {
+	Flat::Engine::App app("Sandbox", 480, 480);
 	return 0;
 }
