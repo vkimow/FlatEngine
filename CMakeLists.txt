@@ -11,9 +11,9 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 include("SetupConfigurations")
 include("SetupGlobalProperties")
 include("SetupGlobalDirectories")
+include("SetupVendorLibs")
 include("Functions")
 
 # vendors include dirs
 set(SFML_INCLUDE_DIR "${FLAT_VENDOR_DIR}/SFML/include")
-
 add_subdirectory(src/FlatEngine FlatEngine)

@@ -141,7 +141,9 @@ function(set_flat_target_properties)
     endif()
 
     # output dir
-    set_flat_target_output_dir(TARGET ${THIS_TARGET} OUTPUT_DIR ${THIS_OUTPUT_DIR})
+    if(NOT "${THIS_OUTPUT_DIR}" STREQUAL "")
+        set_flat_target_output_dir(TARGET ${THIS_TARGET} OUTPUT_DIR ${THIS_OUTPUT_DIR})
+    endif()
 
     # folder
     if(NOT "${THIS_SOLUTION_FOLDER}" STREQUAL "")
