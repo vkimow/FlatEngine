@@ -22,6 +22,5 @@ add_flat_executable(
     SOURCES ${FLAT_CURRENT_SOURCES}
     PRIVATE_INCLUDE_DIRS    ${FLAT_CURRENT_SOURCE_DIR}
                             ${FLAT_INCLUDE_DIR}
-                            ${SFML_INCLUDE_DIR}
     PRIVATE_LINK_LIBS    flat::app
     )
