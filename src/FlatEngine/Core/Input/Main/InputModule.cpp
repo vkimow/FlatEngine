@@ -1,5 +1,6 @@
 #include "FlatEngine/Core/Input/Main/InputModule.h"
 #include "FlatEngine/Core/Input/Main/InputElement.h"
+#include "FlatEngine/Engine/App/Main/App.h"
 #include <vector>
 
 
@@ -19,6 +20,7 @@ namespace Flat::Core
 		{
 			if(mainEvent.type == sf::Event::Closed)
 			{
+				Flat::Engine::App::Quit();
 				return;
 			}
 		}
