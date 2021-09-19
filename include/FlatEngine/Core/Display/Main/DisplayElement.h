@@ -14,6 +14,13 @@ namespace Flat::Core
 	public:
 		DisplayElement(std::shared_ptr<const ITransformable> origin);
 		DisplayElement(std::shared_ptr<const ITransformable> origin, size_t displayOrder);
+
+		DisplayElement(const DisplayElement& displayElement) = default;
+		DisplayElement(DisplayElement&& displayElement) noexcept = default;
+
+		DisplayElement& operator=(const DisplayElement& displayElement) = default;
+		DisplayElement& operator=(DisplayElement&& displayElement) noexcept = default;
+
 		virtual ~DisplayElement();
 
 	public:
