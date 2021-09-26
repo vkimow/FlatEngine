@@ -10,8 +10,8 @@ namespace Flat::Engine::Actors
 	class FLAT_ENGINE_API ICameraController
 	{
 	public:
-		virtual IMoveController& GetMoveController() = 0;
-		virtual IRotateController& GetRotateController() = 0;
-		virtual IZoomController& GetZoomController() = 0;
+		virtual std::shared_ptr<IMoveController> GetMoveController() = 0;
+		virtual std::shared_ptr<IRotateController> GetRotateController() = 0;
+		virtual std::shared_ptr<IZoomController> GetZoomController() = 0;
 	};
 }

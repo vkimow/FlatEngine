@@ -24,7 +24,7 @@ namespace Flat::Core
 		UpdateModule::SortElements();
 	};
 
-	void UpdateElement::SetActive(bool value)
+	void UpdateElement::EnableAutoUpdate(bool value)
 	{
 		isActive = value;
 	};

@@ -11,10 +11,9 @@ namespace Flat::Core
 	class FLAT_ENGINE_API Image : public DisplayElement
 	{
 	public:
-		Image() = delete;
-		Image(std::shared_ptr<const Core::ITransformable> origin);
-		Image(std::shared_ptr<const Core::ITransformable> origin, const Sprite& sprite);
-		Image(std::shared_ptr<const Core::ITransformable> origin, const Sprite& sprite, size_t displayOrder);
+		Image();
+		Image(const Sprite& sprite);
+		Image(const Sprite& sprite, size_t displayOrder);
 
 	public:
 		virtual void UpdateDrawable(const Camera* const camera) override final;

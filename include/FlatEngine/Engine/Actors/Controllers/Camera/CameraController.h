@@ -29,15 +29,15 @@ namespace Flat::Engine::Actors
 		virtual void Update() override;
 
 	public:
-		virtual IMoveController& GetMoveController() override;
-		virtual IRotateController& GetRotateController() override;
-		virtual IZoomController& GetZoomController() override;
+		virtual std::shared_ptr<IMoveController> GetMoveController() override;
+		virtual std::shared_ptr<IRotateController> GetRotateController() override;
+		virtual std::shared_ptr<IZoomController> GetZoomController() override;
 
 	private:
 		Core::Camera* camera;
 
-		MoveController move;
-		RotateController rotate;
-		ZoomController zoom;
+		std::shared_ptr<MoveController> move;
+		std::shared_ptr<RotateController> rotate;
+		std::shared_ptr<ZoomController> zoom;
 	};
 }

@@ -6,7 +6,7 @@
 
 namespace Flat::Core
 {
-	class FLAT_ENGINE_API Transformable : public ITransformable
+	class FLAT_ENGINE_API Transformable : public ITransformable 
 	{
 	public:
 		Transformable();

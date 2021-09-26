@@ -11,10 +11,9 @@ namespace Flat::Core
 	class FLAT_ENGINE_API Shape : public DisplayElement
 	{
 	public:
-		Shape() = delete;
-		Shape(std::shared_ptr<const ITransformable> origin);
-		Shape(std::shared_ptr<const ITransformable> origin, std::shared_ptr<sf::Shape> shape);
-		Shape(std::shared_ptr<const ITransformable> origin, std::shared_ptr<sf::Shape> shape, size_t displayOrder);
+		Shape();
+		Shape(std::shared_ptr<sf::Shape> shape);
+		Shape(std::shared_ptr<sf::Shape> shape, size_t displayOrder);
 
 	public:
 		virtual void UpdateDrawable(const Camera* const camera) override final;
