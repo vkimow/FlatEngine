@@ -20,7 +20,7 @@ namespace Flat::Core::Objects
 		virtual ~ObjectComponent();
 
 	public:
-		void SetActive(bool value) { isActive = value; }
+		void SetActive(bool value);
 		bool IsActive() const;
 
 	protected:
