@@ -12,11 +12,11 @@ namespace Flat::Core
 	{
 	public:
 		Animation() = delete;
-		Animation(std::shared_ptr<const Core::ITransformable> origin, const std::vector<Sprite>& sprites);
-		Animation(std::shared_ptr<const Core::ITransformable> origin, const std::vector<Sprite>& sprites, float spritesPerSecond);
-		Animation(std::shared_ptr<const Core::ITransformable> origin, const std::vector<Sprite>& sprites, FrameSpeed animationSpeed);
-		Animation(std::shared_ptr<const Core::ITransformable> origin, const std::vector<Sprite>& sprites, float spritesPerSecond, size_t diplayOrder);
-		Animation(std::shared_ptr<const Core::ITransformable> origin, const std::vector<Sprite>& sprites, FrameSpeed animationSpeed, size_t displayOrder);
+		Animation(const std::vector<Sprite>& sprites);
+		Animation(const std::vector<Sprite>& sprites, float spritesPerSecond);
+		Animation(const std::vector<Sprite>& sprites, FrameSpeed animationSpeed);
+		Animation(const std::vector<Sprite>& sprites, float spritesPerSecond, size_t diplayOrder);
+		Animation(const std::vector<Sprite>& sprites, FrameSpeed animationSpeed, size_t displayOrder);
 
 
 	public:

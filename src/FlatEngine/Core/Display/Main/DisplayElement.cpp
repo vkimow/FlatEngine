@@ -5,14 +5,14 @@
 
 namespace Flat::Core
 {
-	DisplayElement::DisplayElement(std::shared_ptr<const Core::ITransformable> origin)
-		: DisplayElement(origin, 0)
+	DisplayElement::DisplayElement()
+		: DisplayElement(0)
 	{}
 
-	DisplayElement::DisplayElement(std::shared_ptr<const Core::ITransformable> origin, size_t displayOrder)
-		: origin(origin), displayOrder(displayOrder)
+	DisplayElement::DisplayElement(size_t displayOrder)
+		: displayOrder(displayOrder),
+		Objects::ObjectComponent()
 	{
-		DisplayModule::AddElement(this);
 	}
 
 	DisplayElement::~DisplayElement()
@@ -22,7 +22,7 @@ namespace Flat::Core
 
 	sf::Vector2f DisplayElement::GetScreenPosition(const Camera* const camera)
 	{
-		return FromWorldToScreenSpace(origin->GetPosition(), camera);
+		return FromWorldToScreenSpace(GetGameObject()->GetTransform()->GetPosition(), camera);
 	}
 
 	void DisplayElement::SetDisplayOrder(int value)
@@ -31,14 +31,9 @@ namespace Flat::Core
 		DisplayModule::SortElements();
 	}
 
-	void DisplayElement::SetOrigin(std::shared_ptr<const Core::ITransformable> value)
-	{
-		origin = value;
-	}
-
 	std::ostream& operator<<(std::ostream& out, const DisplayElement& element)
 	{
-		out << "Origin:[" << *element.origin << "] "
+		out << "Origin:[" << *(element.GetGameObject()->GetTransform()) << "] "
 			<< "Display Order:" << element.displayOrder;
 		return out;
 	}

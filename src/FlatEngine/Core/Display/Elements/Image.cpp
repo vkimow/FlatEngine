@@ -2,18 +2,17 @@
 
 namespace Flat::Core{
 
-Image::Image(std::shared_ptr<const Core::ITransformable> origin)
-	: Image(origin, Sprite())
+Image::Image()
+	: Image(Sprite())
 {}
 
-Image::Image(std::shared_ptr<const Core::ITransformable> origin, const Sprite& sprite)
-	: sprite(sprite),
-	DisplayElement(origin)
+Image::Image(const Sprite& sprite)
+	: Image(sprite, 0)
 {}
 
-Image::Image(std::shared_ptr<const Core::ITransformable> origin, const Sprite& sprite, size_t displayOrder)
+Image::Image(const Sprite& sprite, size_t displayOrder)
 	: sprite(sprite),
-	DisplayElement(origin, displayOrder)
+	DisplayElement(displayOrder)
 {}
 
 void Image::UpdateDrawable(const Camera* const camera)

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
 
-project(Display CXX)
+project(Objects CXX)
 
 set_flat_target_dirs(
     TARGET ${PROJECT_NAME}
@@ -22,11 +22,11 @@ set_flat_target_files(
     FILES_DIR ${FLAT_CURRENT_INCLUDE_DIR}
     FILES ${FLAT_CURRENT_AUTO_PUBLIC_HEADERS}
     )
-
+    
 add_flat_library(   
     NAME ${PROJECT_NAME}
     SOLUTION_FOLDER ${FLAT_CURRENT_SUBSOLUTION}
     SOURCES ${FLAT_CURRENT_SOURCES} ${FLAT_CURRENT_PUBLIC_HEADERS}
     PRIVATE_INCLUDE_DIRS    ${FLAT_INCLUDE_DIR}
-    PRIVATE_LINK_LIBS flat::main flat::objects
+    PRIVATE_LINK_LIBS flat::main flat::transform flat::update
     )

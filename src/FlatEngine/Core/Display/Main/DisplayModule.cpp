@@ -32,11 +32,14 @@ namespace Flat::Core
 		renderWindow->clear();
 		Camera* activeCamera = cameraManager->GetActiveCamera();
 
-		if(activeCamera == nullptr)
+		if (activeCamera == nullptr)
 			return;
 
-		for(auto element : elements)
+		for (auto element : elements)
 		{
+			if (!(element->IsActive()))
+				continue;
+
 			Update(element, activeCamera);
 			Draw(element);
 		}
@@ -68,9 +71,9 @@ namespace Flat::Core
 	void DisplayModule::SortElements()
 	{
 		std::sort(elements.begin(), elements.end(), [](DisplayElement* lhs, DisplayElement* rhs)
-		{
-			return lhs->GetDisplayOrder() < rhs->GetDisplayOrder();
-		});
+			{
+				return lhs->GetDisplayOrder() < rhs->GetDisplayOrder();
+			});
 	}
 
 }

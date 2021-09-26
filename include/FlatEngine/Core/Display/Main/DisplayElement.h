@@ -1,19 +1,19 @@
 #pragma once
 
 #include "FlatEngine/Core/Main/FlatEngineApi.h"
+#include "FlatEngine/Core/Objects/GameObject.h"
 #include "SFML/Graphics.hpp"
 #include <memory>
 
 namespace Flat::Core
 {
 	class Camera;
-	class ITransformable;
 
-	class FLAT_ENGINE_API DisplayElement
+	class FLAT_ENGINE_API DisplayElement : public Objects::ObjectComponent
 	{
 	public:
-		DisplayElement(std::shared_ptr<const ITransformable> origin);
-		DisplayElement(std::shared_ptr<const ITransformable> origin, size_t displayOrder);
+		DisplayElement();
+		DisplayElement(size_t displayOrder);
 
 		DisplayElement(const DisplayElement& displayElement) = default;
 		DisplayElement(DisplayElement&& displayElement) noexcept = default;
@@ -30,14 +30,10 @@ namespace Flat::Core
 		size_t GetDisplayOrder() const { return displayOrder; }
 		void SetDisplayOrder(int value);
 
-		std::shared_ptr<const ITransformable> GetOrigin() { return origin; }
-		void SetOrigin(std::shared_ptr<const ITransformable> value);
-
 	protected:
 		sf::Vector2f GetScreenPosition(const Camera* const camera);
 
 	private:
-		std::shared_ptr<const ITransformable> origin;
 		size_t displayOrder;
 
 		friend std::ostream& operator<<(std::ostream& out, const DisplayElement& element);

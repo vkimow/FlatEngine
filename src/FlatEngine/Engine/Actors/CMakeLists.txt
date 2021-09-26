@@ -34,6 +34,7 @@ add_flat_library(
                         flat::time
                         flat::transform
                         flat::update
+                        flat::objects
                         # flat::audio
                         # flat::collision
     )

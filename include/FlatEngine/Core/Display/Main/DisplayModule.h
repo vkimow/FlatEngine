@@ -35,8 +35,8 @@ namespace Flat::Core
 		static const ScreenSettings* const GetScreenSettings() { return screenSettings; }
 
 	private:
-		inline void Update(DisplayElement* element, const Camera* const camera);
-		inline void Draw(DisplayElement* element);
+		void Update(DisplayElement* element, const Camera* const camera);
+		void Draw(DisplayElement* element);
 
 	private:
 		static void AddElement(DisplayElement* element);

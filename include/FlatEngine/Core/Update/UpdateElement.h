@@ -18,7 +18,7 @@ namespace Flat::Core
 		void SetUpdateOrder(size_t value);
 
 		bool IsActive() const { return isActive; }
-		void SetActive(bool value);
+		void EnableAutoUpdate(bool value);
 
 	private:
 		bool isActive;

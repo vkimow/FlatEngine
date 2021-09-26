@@ -29,13 +29,14 @@ add_flat_library(
     NAME ${PROJECT_NAME}
     SOLUTION_FOLDER ${FLAT_CURRENT_SUBSOLUTION}
     SOURCES ${FLAT_CURRENT_SOURCES} ${FLAT_CURRENT_PUBLIC_HEADERS}   
-    PRIVATE_INCLUDE_DIRS    ${FLAT_INCLUDE_DIR}
+    PUBLIC_INCLUDE_DIRS    ${FLAT_INCLUDE_DIR}
     PUBLIC_LINK_LIBS    flat::main
                         flat::display
                         flat::input
                         flat::time
                         flat::transform
                         flat::update
+                        flat::objects
                         # flat::audio
                         # flat::collision
                         flat::actors

@@ -4,17 +4,32 @@
 namespace Flat::Engine::Actors
 {
 	CameraController::CameraController(Core::Camera* camera,
-									   std::shared_ptr<Core::Input::Vector> moveInput = nullptr,
-									   std::shared_ptr<Core::Input::Delta> rotateInput = nullptr,
-									   std::shared_ptr<Core::Input::Delta> zoomInput = nullptr)
+		std::shared_ptr<Core::Input::Vector> moveInput = nullptr,
+		std::shared_ptr<Core::Input::Delta> rotateInput = nullptr,
+		std::shared_ptr<Core::Input::Delta> zoomInput = nullptr)
 		: camera(camera),
-		move(camera->GetOrigin(), moveInput),
-		rotate(camera->GetOrigin(), rotateInput),
-		zoom(camera, zoomInput)
+		move(),
+		rotate(),
+		zoom()
 	{
-		move.SetActive(false);
-		rotate.SetActive(false);
-		zoom.SetActive(false);
+		if (moveInput.get() != nullptr)
+		{
+			move = std::make_shared<MoveController>(camera->GetOrigin(), moveInput);
+		}
+
+		if (rotateInput.get() != nullptr)
+		{
+			rotate = std::make_shared<RotateController>(camera->GetOrigin(), rotateInput);
+		}
+
+		if (zoomInput.get() != nullptr)
+		{
+			zoom = std::make_shared<ZoomController>(camera->GetOrigin(), zoomInput);
+		}
+
+		move->EnableAutoUpdate(false);
+		rotate->EnableAutoUpdate(false);
+		zoom->EnableAutoUpdate(false);
 	};
 
 	CameraController::~CameraController()
@@ -22,22 +37,33 @@ namespace Flat::Engine::Actors
 
 	void CameraController::Update()
 	{
-		rotate.Update();
-		move.Update();
-		zoom.Update();
+		if (move.get() != nullptr)
+		{
+			move->Update();
+		}
+
+		if (rotate.get() != nullptr)
+		{
+			rotate->Update();
+		}
+
+		if (zoom.get() != nullptr)
+		{
+			zoom->Update();
+		}
 	}
 
-	IMoveController& CameraController::GetMoveController()
+	std::shared_ptr <IMoveController> CameraController::GetMoveController()
 	{
 		return move;
 	}
 
-	IRotateController& CameraController::GetRotateController()
+	std::shared_ptr <IRotateController> CameraController::GetRotateController()
 	{
 		return rotate;
 	}
 
-	IZoomController& CameraController::GetZoomController()
+	std::shared_ptr <IZoomController> CameraController::GetZoomController()
 	{
 		return zoom;
 	}
