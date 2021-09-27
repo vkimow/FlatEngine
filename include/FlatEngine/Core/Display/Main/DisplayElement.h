@@ -2,6 +2,7 @@
 
 #include "FlatEngine/Core/Main/FlatEngineApi.h"
 #include "FlatEngine/Core/Objects/GameObject.h"
+#include "FlatEngine/Core/Objects/ObjectComponent.h"
 #include "SFML/Graphics.hpp"
 #include <memory>
 
@@ -35,7 +36,6 @@ namespace Flat::Core
 
 	private:
 		size_t displayOrder;
-
 		friend std::ostream& operator<<(std::ostream& out, const DisplayElement& element);
 	};
 }

@@ -9,6 +9,8 @@ namespace Flat::Core
 	public:
 		UpdateElement();
 		UpdateElement(size_t updateOrder);
+		UpdateElement(bool isAutoUpdateEnabled);
+		UpdateElement(bool isAutoUpdateEnabled, size_t updateOrder);
 		virtual ~UpdateElement();
 
 	public:
@@ -17,11 +19,11 @@ namespace Flat::Core
 		size_t GetUpdateOrder() const { return updateOrder; }
 		void SetUpdateOrder(size_t value);
 
-		bool IsActive() const { return isActive; }
-		void EnableAutoUpdate(bool value);
+		bool IsUpdateEnabled() const { return isUpdateEnabled; }
+		void EnableUpdate(bool value);
 
 	private:
-		bool isActive;
+		bool isUpdateEnabled;
 		size_t updateOrder;
 	};
 }

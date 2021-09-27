@@ -4,14 +4,23 @@
 namespace Flat::Core
 {
 	UpdateElement::UpdateElement()
-		: UpdateElement(0)
-	{};
+		: UpdateElement(true, 0)
+	{}
 
 	UpdateElement::UpdateElement(size_t updateOrder)
-		: updateOrder(updateOrder), isActive(true)
+		: UpdateElement(true, updateOrder)
+	{}
+
+	UpdateElement::UpdateElement(bool isAutoUpdateEnabled)
+		: UpdateElement(isAutoUpdateEnabled, 0)
+	{}
+
+	UpdateElement::UpdateElement(bool isAutoUpdateEnabled, size_t updateOrder)
+		:isUpdateEnabled(isAutoUpdateEnabled),
+		updateOrder(updateOrder)
 	{
 		UpdateModule::AddElement(this);
-	};
+	}
 
 	UpdateElement::~UpdateElement()
 	{
@@ -24,8 +33,8 @@ namespace Flat::Core
 		UpdateModule::SortElements();
 	};
 
-	void UpdateElement::EnableAutoUpdate(bool value)
+	void UpdateElement::EnableUpdate(bool value)
 	{
-		isActive = value;
+		isUpdateEnabled = value;
 	};
 }

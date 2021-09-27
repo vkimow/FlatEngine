@@ -1,5 +1,6 @@
 #pragma once
 #include "FlatEngine/Core/Transform/ITransformable.h"
+#include "FlatEngine/Core/Update/UpdateElement.h"
 #include <unordered_map>
 #include <type_traits>
 
@@ -7,7 +8,7 @@ namespace Flat::Core::Objects
 {
 	class ObjectComponent;
 
-	class GameObject
+	class FLAT_ENGINE_API GameObject : UpdateElement
 	{
 	public:
 		GameObject();
@@ -19,6 +20,9 @@ namespace Flat::Core::Objects
 		GameObject& operator=(GameObject&& object) noexcept = delete;
 
 		virtual ~GameObject();
+
+	public:
+		virtual void Update() override;
 
 	public:
 		void SetActive(bool value) { isActive = value; }
@@ -90,7 +94,7 @@ namespace Flat::Core::Objects
 	private:
 		bool isActive;
 		const std::unique_ptr<Flat::Core::ITransformable> transform;
-		const std::unordered_map<const std::type_info, const std::unique_ptr<ObjectComponent>> components;
+		const std::unordered_map<const std::type_info, std::unique_ptr<ObjectComponent>> components;
 
 	};
 }
