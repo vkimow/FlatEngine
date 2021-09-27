@@ -27,9 +27,9 @@ namespace Flat::Engine::Actors
 			zoom = std::make_shared<ZoomController>(camera->GetOrigin(), zoomInput);
 		}
 
-		move->EnableAutoUpdate(false);
-		rotate->EnableAutoUpdate(false);
-		zoom->EnableAutoUpdate(false);
+		move->EnableUpdate(false);
+		rotate->EnableUpdate(false);
+		zoom->EnableUpdate(false);
 	};
 
 	CameraController::~CameraController()

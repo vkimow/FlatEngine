@@ -4,7 +4,7 @@
 #include "SFML/Window.hpp"
 #include "FlatEngine/Core/Input/Main/InputElement.h"
 #include "FlatEngine/Core/Main/Events/Action.h"
-#include "..\..\..\..\..\include\FlatEngine\Core\Input\Elements\Mouse.h"
+#include "FlatEngine\Core\Input\Elements\Mouse.h"
 
 namespace Flat::Core::Input
 {
