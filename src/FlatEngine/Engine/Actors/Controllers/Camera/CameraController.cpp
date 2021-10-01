@@ -24,7 +24,7 @@ namespace Flat::Engine::Actors
 
 		if (zoomInput.get() != nullptr)
 		{
-			zoom = std::make_shared<ZoomController>(camera->GetOrigin(), zoomInput);
+			zoom = std::make_shared<ZoomController>(camera, zoomInput);
 		}
 
 		move->EnableUpdate(false);

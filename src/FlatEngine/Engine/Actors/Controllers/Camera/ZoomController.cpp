@@ -5,7 +5,8 @@ namespace Flat::Engine::Actors
 	ZoomController::ZoomController(Core::Camera* camera,
 								   std::shared_ptr<Core::Input::Delta> input)
 		: camera(camera),
-		input(input)
+		input(input),
+		speed(0)
 	{}
 
 	ZoomController::~ZoomController()

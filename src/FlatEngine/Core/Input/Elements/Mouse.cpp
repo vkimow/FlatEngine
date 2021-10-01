@@ -9,8 +9,7 @@
 namespace Flat::Core::Input
 {
 	Mouse::Mouse(const sf::WindowBase& window)
-		: window(window),
-		position()
+		: window(window)
 	{}
 
 	Mouse::~Mouse()
@@ -18,22 +17,25 @@ namespace Flat::Core::Input
 
 	void Mouse::UpdateInput(const sf::Event& event)
 	{
-		sf::Vector2f newPosition = GetPositionInput(event);
+		sf::Vector2i newPosition = GetPositionInput(event);
 
 		if (position != newPosition)
 		{
 			ChangePosition(newPosition);
 		}
 	}
-	sf::Vector2f Mouse::GetPositionInput(const sf::Event& event)
+	sf::Vector2i Mouse::GetPositionInput(const sf::Event& event)
 	{
-		sf::Mouse::getPosition(window);
+		return sf::Mouse::getPosition(window);
 	}
 
-	void Mouse::ChangePosition(sf::Vector2f newPosition)
+	void Mouse::ChangePosition(sf::Vector2i newPosition)
 	{
-			position = newPosition;
-			OnPositionChange(newPosition);
+		position = newPosition;
 	}
+
+	sf::Vector2i Mouse::position = sf::Vector2i(0, 0);
 }
+
+
 

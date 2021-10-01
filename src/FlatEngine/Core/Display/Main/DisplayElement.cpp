@@ -12,8 +12,7 @@ namespace Flat::Core
 	DisplayElement::DisplayElement(size_t displayOrder)
 		: displayOrder(displayOrder),
 		Objects::ObjectComponent()
-	{
-	}
+	{}
 
 	DisplayElement::~DisplayElement()
 	{

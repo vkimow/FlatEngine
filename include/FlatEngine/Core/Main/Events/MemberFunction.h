@@ -41,7 +41,6 @@ namespace Flat::Core
 		{
 			if (ContainsMemberFunction(member, function))
 			{
-				std::cout << "Contains Member Function!";
 				auto referenceFunction = GetMemberFunction(member, function);
 				this->function = referenceFunction.function;
 				this->id = referenceFunction.id;
@@ -59,7 +58,6 @@ namespace Flat::Core
 		{
 			if (ContainsMemberFunction(member, function))
 			{
-				std::cout << "Contains Member Function!";
 				return GetMemberFunction(member, function);
 			}
 

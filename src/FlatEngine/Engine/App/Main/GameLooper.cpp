@@ -27,7 +27,6 @@ namespace Flat::Engine
 		InputLoop();
 		TimeLoop();
 		UpdateLoop();
-		GameObjectsTick();
 		DisplayLoop();
 	}
 
