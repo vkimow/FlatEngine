@@ -7,30 +7,26 @@
 
 namespace Flat::Core::Input
 {
-	class FLAT_ENGINE_API Mouse : public InputElement
+	class FLAT_ENGINE_API Mouse final : public InputElement
 	{
-	protected:
-		Mouse(const sf::WindowBase& window);
-
 	public:
-		virtual ~Mouse();
+		Mouse() = delete;
+		Mouse(const sf::WindowBase& window);
+		~Mouse();
 
 	public:
 		virtual void UpdateInput(const sf::Event& event) override final;
-		const sf::Vector2f GetPosition() const { return position; }
+		static const sf::Vector2i GetPosition() { return position; }
 
 	protected:
-		sf::Vector2f GetPositionInput(const sf::Event& event);
+		sf::Vector2i GetPositionInput(const sf::Event& event);
 
 	private:
-		void ChangePosition(sf::Vector2f newPosition);
-
-	private:
-		CreateAction(sf::Vector2f, OnPositionChange)
+		void ChangePosition(sf::Vector2i newPosition);
 
 	private:
 		const sf::WindowBase& window;
-		sf::Vector2f position;
+		static sf::Vector2i position;
 	};
 
 }

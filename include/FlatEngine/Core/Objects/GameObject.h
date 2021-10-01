@@ -32,31 +32,26 @@ namespace Flat::Core::Objects
 		Flat::Core::ITransformable* const GetTransform() { return transform.get(); }
 
 	public:
-		template <typename Component, typename... _Types,
-			std::enable_if_t<std::is_base_of_v<ObjectComponent, Component>, int> = 0,
-			std::enable_if_t<!std::is_abstract_v<Component>, int> = 0>
-			void AddComponent(_Types&&... args)
-		{
-			std::unique_ptr<Component> component(CreateComponent(args));
-			AddComponent<Component>(std::move(component);
-		}
-
 		template <typename Component,
 			std::enable_if_t<std::is_base_of_v<ObjectComponent, Component>, int> = 0,
 			std::enable_if_t<!std::is_abstract_v<Component>, int> = 0>
 			void AddComponent(std::unique_ptr<Component>&& component)
 		{
-			std::type_info typeInfo = typeid(Component)
-			components.insert(typeInfo, std::forward(component));
-			components[typeInfo]->SetGameObject(this);
+			std::type_info typeInfo = typeid(Component);
+			size_t hashCode = typeInfo.hash_code();
+
+			components.emplace(std::make_pair<size_t, std::unique_ptr<Component>>(hashCode, std::move(component)));
+			components[hashCode]->SetGameObject(this);
 		}
 
 		template <typename Component, typename... _Types,
 			std::enable_if_t<std::is_base_of_v<ObjectComponent, Component>, int> = 0,
 			std::enable_if_t<!std::is_abstract_v<Component>, int> = 0>
-			Component* CreateComponent(_Types&&... args)
+			void CreateComponent(_Types&&... args)
 		{
-			return new Component(std::forward<_Types>(args)..., *this);
+			Component* componentPtr = new Component(std::forward(args)...);
+			std::unique_ptr<Component> component(componentPtr);
+			AddComponent<Component>(std::move(component));
 		}
 
 		template <typename Component,
@@ -65,7 +60,9 @@ namespace Flat::Core::Objects
 			void ContainsComponent()
 		{
 			std::type_info typeInfo = typeid(Component);
-			return components.find(typeInfo) != components.end();
+			size_t hashCode = typeInfo.hash_code();
+
+			return components.find(hashCode) != components.end();
 		}
 
 		template <typename Component,
@@ -74,7 +71,8 @@ namespace Flat::Core::Objects
 			void RemoveComponent()
 		{
 			std::type_info typeInfo = typeid(Component);
-			components.erase(typeInfo);
+			size_t hashCode = typeInfo.hash_code();
+			components.erase(hashCode);
 		}
 
 		template <typename Component,
@@ -82,8 +80,10 @@ namespace Flat::Core::Objects
 			std::enable_if_t<!std::is_abstract_v<Component>, int> = 0>
 			Component* const GetComponent()
 		{
+
 			std::type_info typeInfo = typeid(Component);
-			auto component = components.find(typeInfo);
+			size_t hashCode = typeInfo.hash_code();
+			auto component = components.find(hashCode);
 
 			if (component == components.end())
 				return nullptr;
@@ -93,8 +93,7 @@ namespace Flat::Core::Objects
 
 	private:
 		bool isActive;
-		const std::unique_ptr<Flat::Core::ITransformable> transform;
-		const std::unordered_map<const std::type_info, std::unique_ptr<ObjectComponent>> components;
-
+		std::unique_ptr<Flat::Core::ITransformable> transform;
+		std::unordered_map<size_t, std::unique_ptr<ObjectComponent>> components;
 	};
 }

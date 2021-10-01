@@ -1,6 +1,7 @@
 #pragma once
 
 #include "FlatEngine/Core/Main/FlatEngineApi.h"
+#include "FlatEngine/Core/Input/Elements/Mouse.h"
 #include "SFML/Window.hpp"
 
 #pragma region Forward Declaration
@@ -14,6 +15,11 @@ namespace Flat::Engine
 
 namespace Flat::Core
 {
+	namespace Input
+	{
+		class Mouse;
+	}
+
 	class FLAT_ENGINE_API InputModule final
 	{
 		friend class Engine::GameLooper;
@@ -36,6 +42,7 @@ namespace Flat::Core
 
 	private:
 		static std::vector<InputElement*> elements;
+		std::unique_ptr<Input::Mouse> mouse;
 
 	private:
 		static void AddElement(InputElement* element);

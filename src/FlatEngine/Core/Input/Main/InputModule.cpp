@@ -11,8 +11,12 @@ namespace Flat::Core
 	InputModule::InputModule(sf::Window* sfmlWindow)
 		:
 		sfmlWindow(sfmlWindow),
-		mainEvent()
-	{};
+		mainEvent(),
+		mouse()
+	{
+		Input::Mouse* mouseee = new Input::Mouse(*sfmlWindow);
+		mouse = std::unique_ptr<Input::Mouse>(mouseee);
+	};
 
 	void InputModule::Update()
 	{
